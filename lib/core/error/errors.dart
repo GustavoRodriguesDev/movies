@@ -18,3 +18,7 @@ class RepositoryError extends Failure {
 class DatasourceError extends Failure {
   DatasourceError({required super.message,  super.stackTrace});
 }
+
+class ServiceError extends Failure {
+  ServiceError({required super.message,  super.stackTrace});
+}
