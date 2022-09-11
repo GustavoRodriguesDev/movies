@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 import '../../../../core/error/errors.dart';
 import '../dto/paran_search_movie_dto.dart';
-import '../entities/list_movies_entity.dart';
+import '../entities/movie_entity.dart';
 import '../repository/movies_repository.dart';
 
-typedef ReturnSearchMovies = Future<Either<Failure, ListMovieEntity>>;
+typedef ReturnSearchMovies = Future<Either<Failure, List<MovieEntity>>>;
 
 abstract class ISearchMovie {
   ReturnSearchMovies call(ParanSearchMovieDto paran);

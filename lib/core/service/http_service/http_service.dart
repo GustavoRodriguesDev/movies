@@ -12,7 +12,7 @@ class HttpService implements IHttpService {
 
   HttpService(this.dio) {
     BaseOptions(
-      baseUrl: 'https://api.themoviedb.org/3/',
+      baseUrl: 'https://api.themoviedb.org/3',
       queryParameters: {
         'api_key': 'fda8099f4436a999739a94af37f5873d',
         'language': 'pt-BR',

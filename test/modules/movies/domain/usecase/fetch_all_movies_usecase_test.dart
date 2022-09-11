@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:movies/core/error/errors.dart';
 import 'package:movies/modules/movies/domain/dto/pagination_movie_dto.dart';
-import 'package:movies/modules/movies/domain/entities/list_movies_entity.dart';
+import 'package:movies/modules/movies/domain/entities/movie_entity.dart';
 import 'package:movies/modules/movies/domain/repository/movies_repository.dart';
 import 'package:movies/modules/movies/domain/usecase/fetch_all_movies_usecase.dart';
 
@@ -19,15 +19,15 @@ void main() {
   });
 
   PaginationMovieDto page = const PaginationMovieDto();
-  ListMovieEntity entity = const ListMovieEntity();
+
 
   test('Deve retornar uma lista de MoviesEntity quando o metodo for chamado', () async {
-    when(() => repository.getAllMovies(page)).thenAnswer((_) async => Right(entity));
+    when(() => repository.getAllMovies(page)).thenAnswer((_) async =>const Right([]));
 
     final response = await usecase(page);
 
     expect(response.isRight(), true);
-    expect(response.fold(id, id), isA<ListMovieEntity>());
+    expect(response.fold(id, id), isA<List<MovieEntity>>());
     verify(() => repository.getAllMovies(page)).called(1);
   });
   test('Deve retornar uma Failure quando o metodo for chamado', () async {

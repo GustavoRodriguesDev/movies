@@ -3,7 +3,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:movies/core/error/errors.dart';
 import 'package:movies/modules/movies/domain/dto/pagination_movie_dto.dart';
 import 'package:movies/modules/movies/domain/dto/paran_search_movie_dto.dart';
-import 'package:movies/modules/movies/domain/entities/list_movies_entity.dart';
+import 'package:movies/modules/movies/domain/entities/movie_entity.dart';
 import 'package:movies/modules/movies/domain/repository/movies_repository.dart';
 import 'package:movies/modules/movies/infra/datasource/movies_datasource.dart';
 import 'package:movies/modules/movies/infra/repository/moview_repository.dart';
@@ -20,13 +20,12 @@ void main() {
   });
   PaginationMovieDto page = const PaginationMovieDto();
   ParanSearchMovieDto dto = const ParanSearchMovieDto(searchParan: 'lord os the rings');
-  ListMovieEntity entity = const ListMovieEntity();
   test('Deve retornar um ListMovieEntity quando o metodo for chamado getAllMovies for chamado', () async {
-    when(() => datasource.getAllMovies(page)).thenAnswer((_) async => entity);
+    when(() => datasource.getAllMovies(page)).thenAnswer((_) async => []);
     final response = await repository.getAllMovies(page);
 
     expect(response.isRight(), true);
-    expect(response.fold((l) => l, (r) => r), isA<ListMovieEntity>());
+    expect(response.fold((l) => l, (r) => r), isA<List<MovieEntity>>());
     verify(() => datasource.getAllMovies(page)).called(1);
   });
 
@@ -39,11 +38,11 @@ void main() {
     verify(() => datasource.getAllMovies(page)).called(1);
   });
   test('Deve retornar um ListMovieEntity quando o metodo for chamado searchMovies for chamado', () async {
-    when(() => datasource.searchMovies(dto)).thenAnswer((_) async => entity);
+    when(() => datasource.searchMovies(dto)).thenAnswer((_) async => []);
     final response = await repository.searchMovies(dto);
 
     expect(response.isRight(), true);
-    expect(response.fold((l) => l, (r) => r), isA<ListMovieEntity>());
+    expect(response.fold((l) => l, (r) => r), isA<List<MovieEntity>>());
     verify(() => datasource.searchMovies(dto)).called(1);
   });
 

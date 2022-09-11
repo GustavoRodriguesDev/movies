@@ -1,16 +1,16 @@
 class MovieEntity {
   final bool adult;
   final String backdropPath;
-  final List<int> genreIds;
+  final List genreIds;
   final int movieID;
   final String originalLanguage;
   final String originalTitle;
   final String overview;
-  final double popularity;
+  final num popularity;
   final String posterPath;
   final String releaseDate;
   final String title;
-  final double voteAverage;
+  final num voteAverage;
   final int voteCount;
 
   const MovieEntity({

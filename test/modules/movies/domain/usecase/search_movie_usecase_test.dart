@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:movies/core/error/errors.dart';
 import 'package:movies/modules/movies/domain/dto/paran_search_movie_dto.dart';
-import 'package:movies/modules/movies/domain/entities/list_movies_entity.dart';
+import 'package:movies/modules/movies/domain/entities/movie_entity.dart';
 import 'package:movies/modules/movies/domain/repository/movies_repository.dart';
 import 'package:movies/modules/movies/domain/usecase/search_movie.dart';
 
@@ -17,12 +17,11 @@ void main() {
     usecase = SearchMovie(repository);
   });
   ParanSearchMovieDto dto = const ParanSearchMovieDto(searchParan: 'lord os the rings');
-  ListMovieEntity entity = const ListMovieEntity();
   test('Deve retonar um ListMovieEntity quando o metofo for chamado', () async {
-    when(() => repository.searchMovies(dto)).thenAnswer((_) async => Right(entity));
+    when(() => repository.searchMovies(dto)).thenAnswer((_) async => const Right([]));
     final response = await usecase(dto);
     expect(response.isRight(), true);
-    expect(response.fold(id, id), isA<ListMovieEntity>());
+    expect(response.fold(id, id), isA<List<MovieEntity>>());
     verify(() => repository.searchMovies(dto)).called(1);
   });
   test('Deve retornar uma Failure quando o metodo for chamado', () async {
