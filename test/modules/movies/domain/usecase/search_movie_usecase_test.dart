@@ -5,7 +5,7 @@ import 'package:movies/core/error/errors.dart';
 import 'package:movies/modules/movies/domain/dto/paran_search_movie_dto.dart';
 import 'package:movies/modules/movies/domain/entities/list_movies_entity.dart';
 import 'package:movies/modules/movies/domain/repository/movies_repository.dart';
-import 'package:movies/modules/movies/domain/usecase/search_movie.dart';
+import 'package:movies/modules/movies/domain/usecase/search_movie_usecase.dart';
 
 class MoviesRepositoryMock extends Mock implements IMoviesRepository {}
 
