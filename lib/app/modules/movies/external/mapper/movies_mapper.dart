@@ -1,4 +1,4 @@
-import 'package:movies/modules/movies/domain/entities/movie_entity.dart';
+import '../../domain/entities/movie_entity.dart';
 import '../error/movie_mapper_error.dart';
 
 class MoviesMapper {

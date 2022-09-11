@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:movies/core/service/http_service/response_http_service.dart';
-
+import '../../../core/service/http_service/response_http_service.dart';
 import '../../error/errors.dart';
 
 abstract class IHttpService {

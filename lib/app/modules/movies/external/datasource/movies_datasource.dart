@@ -1,12 +1,13 @@
 // ignore_for_file: unused_catch_clause
 
-import 'package:movies/core/error/errors.dart';
-import 'package:movies/core/service/http_service/http_service.dart';
-import 'package:movies/modules/movies/domain/dto/paran_search_movie_dto.dart';
-import 'package:movies/modules/movies/domain/dto/pagination_movie_dto.dart';
-import 'package:movies/modules/movies/external/mapper/movies_mapper.dart';
-import 'package:movies/modules/movies/infra/datasource/movies_datasource.dart';
+
+import '../../../../core/error/errors.dart';
+import '../../../../core/service/http_service/http_service.dart';
+import '../../domain/dto/pagination_movie_dto.dart';
+import '../../domain/dto/paran_search_movie_dto.dart';
 import '../../domain/entities/movie_entity.dart';
+import '../../infra/datasource/movies_datasource.dart';
+import '../mapper/movies_mapper.dart';
 
 class MoviesDatasource implements IMoviesDatasource {
   final IHttpService http;

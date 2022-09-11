@@ -1,9 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:movies/core/error/errors.dart';
-import 'package:movies/modules/movies/domain/dto/paran_search_movie_dto.dart';
-import 'package:movies/modules/movies/domain/dto/pagination_movie_dto.dart';
-import 'package:movies/modules/movies/domain/repository/movies_repository.dart';
-
+import '../../../../core/error/errors.dart';
+import '../../domain/dto/pagination_movie_dto.dart';
+import '../../domain/dto/paran_search_movie_dto.dart';
+import '../../domain/repository/movies_repository.dart';
 import '../datasource/movies_datasource.dart';
 
 class MoviesRepository implements IMoviesRepository {

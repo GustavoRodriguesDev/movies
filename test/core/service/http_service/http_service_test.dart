@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:movies/core/error/errors.dart';
-import 'package:movies/core/service/http_service/http_service.dart';
-import 'package:movies/core/service/http_service/response_http_service.dart';
+import 'package:movies/app/core/error/errors.dart';
+import 'package:movies/app/core/service/http_service/http_service.dart';
+import 'package:movies/app/core/service/http_service/response_http_service.dart';
 
 class DioMock extends Mock implements Dio {}
 
