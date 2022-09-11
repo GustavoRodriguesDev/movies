@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import '../../../../core/error/errors.dart';
 import '../dto/pagination_movie_dto.dart';
 import '../entities/list_movies_entity.dart';
-import '../repository/fetch_all_moview_repository.dart';
+import '../repository/movies_repository.dart';
 
 typedef ReturnFetchMovies = Future<Either<Failure, ListMovieEntity>>;
 
@@ -12,7 +12,7 @@ abstract class IFetchAllMoviesUsecase {
 }
 
 class FetchAllMoviesUsecase implements IFetchAllMoviesUsecase {
-  final IFetchAllMoviesRepository repository;
+  final IMoviesRepository repository;
 
   const FetchAllMoviesUsecase(this.repository);
   @override
@@ -20,6 +20,6 @@ class FetchAllMoviesUsecase implements IFetchAllMoviesUsecase {
     if (page.page <= 0) {
       return Left(DomainError(message: 'Não foi encontrado uma pagina para buscar os filmes'));
     }
-    return await repository.get(page);
+    return await repository.getAllMovies(page);
   }
 }

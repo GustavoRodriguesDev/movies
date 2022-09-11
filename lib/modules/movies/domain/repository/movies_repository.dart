@@ -5,6 +5,6 @@ import '../entities/list_movies_entity.dart';
 
 typedef ReturnFetchMovies = Future<Either<Failure, ListMovieEntity>>;
 
-abstract class IFetchAllMoviesRepository {
-  ReturnFetchMovies get(PaginationMovieDto page);
+abstract class IMoviesRepository {
+  ReturnFetchMovies getAllMovies(PaginationMovieDto page);
 }
