@@ -1,6 +1,5 @@
-import 'package:dartz/dartz.dart';
 
-abstract class Failure {
+ class Failure {
   final String message;
   final StackTrace? stackTrace;
 
