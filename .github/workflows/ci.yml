@@ -1,0 +1,21 @@
+name: ci-movies
+
+on:
+  push:
+    branches:
+      - developer
+      - master
+  pull_request:
+    branches:
+      - developer
+      - master
+
+jobs:
+  flutter_test:
+    name: Run Flutter test and analyse
+    runs-on: ubuntu-latest
+    steps:
+      - run: flutter clean
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter test --coverage
