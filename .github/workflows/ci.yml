@@ -15,7 +15,7 @@ jobs:
     name: Run Flutter test and analyse
     runs-on: ubuntu-latest
     steps:
-      - run: flutter clean
+     # - run: flutter clean
       - run: flutter pub get
       - run: flutter analyze
       - run: flutter test --coverage
