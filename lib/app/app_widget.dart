@@ -11,10 +11,13 @@ class AppWidget extends StatefulWidget {
 class _AppWidgetState extends State<AppWidget> {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        scaffoldBackgroundColor: const Color(0xFF1B2230),
+      ),
       title: 'Movies',
-      home: HomePage(),
+      home: const HomePage(),
     );
   }
 }
