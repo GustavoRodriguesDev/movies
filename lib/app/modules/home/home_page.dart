@@ -17,13 +17,19 @@ class _HomePageState extends State<HomePage> {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: const CustomAppBar(),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 14, vertical: 6),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [MovieCard(), MovieCard()],
-        ),
-      ),
+      body: Padding(
+          padding: EdgeInsets.only(left: 14, right: 14, top: 6),
+          child: ListView.builder(
+            shrinkWrap: true,
+            itemCount: 9,
+            itemBuilder: (context, index) {
+              return MovieCard(
+                ratingMovie: 5,
+                nameMovie: '',
+                pathImage: '',
+              );
+            },
+          )),
     );
   }
 }

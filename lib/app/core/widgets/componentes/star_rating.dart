@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 
 class StarRating extends StatefulWidget {
-  const StarRating({Key? key}) : super(key: key);
+  final double rating;
+  final double width;
+  const StarRating({
+    Key? key,
+    required this.rating,
+    required this.width,
+  }) : super(key: key);
 
   @override
   State<StarRating> createState() => _StarRatingState();
@@ -10,44 +16,47 @@ class StarRating extends StatefulWidget {
 class _StarRatingState extends State<StarRating> {
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Row(
-          children: List.generate(
-            5,
-            (index) => const Icon(
-              Icons.star_border_purple500_outlined,
-              color: Colors.white,
-            ),
-          ),
-        ),
-        ClipPath(
-          clipper: CortaEstrala(0.50),
-          child: Row(
+    return SizedBox(
+      width: widget.width,
+      child: Stack(
+        children: [
+          Row(
             children: List.generate(
               5,
               (index) => const Icon(
-                Icons.star,
-                color: Colors.yellow,
+                Icons.star_border_purple500_outlined,
+                color: Colors.white,
               ),
             ),
           ),
-        ),
-      ],
+          ClipPath(
+            clipper: ClipStar(widget.rating / 10),
+            child: Row(
+              children: List.generate(
+                5,
+                (index) => const Icon(
+                  Icons.star,
+                  color: Colors.yellow,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
 
-class CortaEstrala extends CustomClipper<Path> {
-  final double corte;
+class ClipStar extends CustomClipper<Path> {
+  final double clip;
 
-  CortaEstrala(this.corte);
+  ClipStar(this.clip);
   @override
   getClip(Size size) {
     Path caixa = Path()
           ..lineTo(0, 0)
-          ..lineTo(size.width * corte, 0)
-          ..lineTo(size.width * corte, size.height)
+          ..lineTo(size.width * clip, 0)
+          ..lineTo(size.width * clip, size.height)
           ..lineTo(0, size.height)
 
 //
