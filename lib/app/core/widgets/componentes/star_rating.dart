@@ -10,26 +10,52 @@ class StarRating extends StatefulWidget {
 class _StarRatingState extends State<StarRating> {
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    return Container(
-      height: 30,
-      width: width * 0.42,
-      color: Colors.white,
-      child: CustomPaint(
-        painter: CustomStarRating(),
-          child: SizedBox(
-        height: 30,
-        width: width * 0.42,
-      )),
+    return Stack(
+      children: [
+        Row(
+          children: List.generate(
+            5,
+            (index) => const Icon(
+              Icons.star_border_purple500_outlined,
+              color: Colors.white,
+            ),
+          ),
+        ),
+        ClipPath(
+          clipper: CortaEstrala(0.50),
+          child: Row(
+            children: List.generate(
+              5,
+              (index) => const Icon(
+                Icons.star,
+                color: Colors.yellow,
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
-class CustomStarRating extends CustomPainter{
+
+class CortaEstrala extends CustomClipper<Path> {
+  final double corte;
+
+  CortaEstrala(this.corte);
   @override
-  void paint(Canvas canvas, Size size) {
-    
+  getClip(Size size) {
+    Path caixa = Path()
+          ..lineTo(0, 0)
+          ..lineTo(size.width * corte, 0)
+          ..lineTo(size.width * corte, size.height)
+          ..lineTo(0, size.height)
+
+//
+        ;
+
+    return caixa;
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) =>true;
+  bool shouldReclip(covariant CustomClipper oldClipper) => true;
 }
