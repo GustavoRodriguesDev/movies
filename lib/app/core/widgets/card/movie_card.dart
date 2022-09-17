@@ -26,13 +26,16 @@ class MovieCard extends StatelessWidget {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(width * 0.05)), color: Colors.white.withOpacity(0.1)),
           child: Image.network(
-            'https://img.elo7.com.br/product/original/2692931/big-poster-o-senhor-dos-aneis-o-retorno-do-rei-lo07-90x60-cm-poster.jpg',
+            'https://image.tmdb.org/t/p/w500$pathImage',
             fit: BoxFit.fill,
+            errorBuilder: (context, error, stackTrace) {
+              return const Center(child: Text('Image not found'));
+            },
             loadingBuilder: (_, widget, image) {
               if (image == null) {
                 return widget;
               }
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             },
@@ -43,9 +46,9 @@ class MovieCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'O senhor dos Anais',
-                style: TextStyle(color: Colors.white),
+              Text(
+                nameMovie,
+                style: const TextStyle(color: Colors.white),
               ),
               LayoutBuilder(
                 builder: (context, constraints) {

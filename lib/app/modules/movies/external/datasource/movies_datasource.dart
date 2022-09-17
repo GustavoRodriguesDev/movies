@@ -1,6 +1,5 @@
 // ignore_for_file: unused_catch_clause
 
-
 import '../../../../core/error/errors.dart';
 import '../../../../core/service/http_service/http_service.dart';
 import '../../domain/dto/pagination_movie_dto.dart';
@@ -16,7 +15,7 @@ class MoviesDatasource implements IMoviesDatasource {
   @override
   Future<List<MovieEntity>> getAllMovies(PaginationMovieDto page) async {
     try {
-      final response = await http.get('/movie/popular', queryParameters: {'page': page.page});
+      final response = await http.get('/movie/now_playing', queryParameters: {'page': page.page});
       return MoviesMapper.fromJson(response.data['results']);
     } on Failure catch (e) {
       rethrow;

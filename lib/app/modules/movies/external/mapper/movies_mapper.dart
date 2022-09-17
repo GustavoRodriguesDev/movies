@@ -2,7 +2,7 @@ import '../../domain/entities/movie_entity.dart';
 import '../error/movie_mapper_error.dart';
 
 class MoviesMapper {
-  static List<MovieEntity> fromJson(List<Map<String, dynamic>> movies) {
+  static List<MovieEntity> fromJson(List<dynamic> movies) {
     try {
       return movies
           .map(

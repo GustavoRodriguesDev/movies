@@ -9,15 +9,7 @@ abstract class IHttpService {
 class HttpService implements IHttpService {
   final Dio dio;
 
-  HttpService(this.dio) {
-    BaseOptions(
-      baseUrl: 'https://api.themoviedb.org/3',
-      queryParameters: {
-        'api_key': 'fda8099f4436a999739a94af37f5873d',
-        'language': 'pt-BR',
-      },
-    );
-  }
+  HttpService(this.dio);
   @override
   Future<ResponseHttpService> get(String url, {Map<String, dynamic>? queryParameters}) async {
     try {

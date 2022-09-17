@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:movies/app/get_it.dart';
 import 'modules/home/home_page.dart';
+import 'modules/home/store/home_store.dart';
 
 class AppWidget extends StatefulWidget {
   const AppWidget({Key? key}) : super(key: key);
@@ -17,7 +19,7 @@ class _AppWidgetState extends State<AppWidget> {
         scaffoldBackgroundColor: const Color(0xFF1B2230),
       ),
       title: 'Movies',
-      home: const HomePage(),
+      home: HomePage(homeStore: getIt<HomeStore>()),
     );
   }
 }
