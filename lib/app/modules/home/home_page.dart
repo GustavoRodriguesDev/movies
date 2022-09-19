@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/widgets/appbar/custom_app_bar.dart';
 import '../../core/widgets/card/movie_card.dart';
+import '../../core/widgets/card/movie_card_shimmer.dart';
 import 'store/home_store.dart';
 import 'store/state/home_state.dart';
 
@@ -34,8 +35,19 @@ class _HomePageState extends State<HomePage> {
           valueListenable: homeStore,
           builder: ((context, value, child) {
             if (value is LoadingHomeState) {
-              return const Center(
-                child: CircularProgressIndicator(),
+              return GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  childAspectRatio: 0.65,
+                  crossAxisSpacing: 10,
+                  crossAxisCount: 2,
+                ),
+                shrinkWrap: true,
+                itemCount: 6,
+                itemBuilder: (context, index) {
+                  return const Center(
+                    child: MovieCardShimmer(),
+                  );
+                },
               );
             }
             if (value is ErrorHomeState) {
@@ -56,6 +68,9 @@ class _HomePageState extends State<HomePage> {
                     ratingMovie: movie.voteAverage.toDouble(),
                     nameMovie: movie.title,
                     pathImage: movie.posterPath,
+                    imageBackgroud: movie.backdropPath,
+                    votes: movie.voteCount,
+                    description: movie.overview,
                   );
                 },
               );
