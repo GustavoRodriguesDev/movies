@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../constants/movies_api.dart';
 import '../card/movie_card_shimmer.dart';
 
 class ImagePoster extends StatelessWidget {
@@ -18,7 +19,7 @@ class ImagePoster extends StatelessWidget {
         color: Colors.white.withOpacity(0.1),
       ),
       child: Image.network(
-        'https://image.tmdb.org/t/p/w500$pathImage',
+        MovieConstants.image + pathImage,
         fit: BoxFit.fill,
         errorBuilder: (context, error, stackTrace) {
           return const Center(child: Text('Image not found'));
