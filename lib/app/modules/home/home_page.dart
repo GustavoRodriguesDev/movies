@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/constants/movies_api.dart';
 import '../../core/widgets/appbar/custom_app_bar.dart';
 import '../../core/widgets/card/movie_card.dart';
 import '../../core/widgets/card/movie_card_shimmer.dart';
@@ -64,11 +65,15 @@ class _HomePageState extends State<HomePage> {
                 itemCount: value.listMovies.length,
                 itemBuilder: (context, index) {
                   final movie = value.listMovies[index];
+                  final imageBackgroud = Image.network(
+                    MovieConstants.image + movie.backdropPath,
+                    fit: BoxFit.fill,
+                  );
                   return MovieCard(
                     ratingMovie: movie.voteAverage.toDouble(),
                     nameMovie: movie.title,
                     pathImage: movie.posterPath,
-                    imageBackgroud: movie.backdropPath,
+                    imageBackgroud: imageBackgroud,
                     votes: movie.voteCount,
                     description: movie.overview,
                   );
