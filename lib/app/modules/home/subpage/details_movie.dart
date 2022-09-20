@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class DetailsMovie extends StatefulWidget {
-  final String imageBackgroud;
+  final Image imageBackgroud;
   final String pathImage;
   final String nameMovie;
   final double rating;
@@ -34,10 +34,7 @@ class _DetailsMovieState extends State<DetailsMovie> {
               SizedBox(
                 height: height * 0.35,
                 width: width,
-                child: Image.network(
-                  'https://image.tmdb.org/t/p/w500${widget.imageBackgroud}',
-                  fit: BoxFit.cover,
-                ),
+                child: widget.imageBackgroud,
               ),
               Positioned(
                 bottom: 0,
