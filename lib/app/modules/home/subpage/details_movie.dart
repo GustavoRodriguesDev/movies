@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/constants/movies_api.dart';
+
 class DetailsMovie extends StatefulWidget {
-  final Image imageBackgroud;
-  final String pathImage;
+  final String imageBackgroud;
   final String nameMovie;
   final double rating;
   final int votes;
@@ -10,7 +11,6 @@ class DetailsMovie extends StatefulWidget {
   const DetailsMovie({
     super.key,
     required this.imageBackgroud,
-    required this.pathImage,
     required this.nameMovie,
     required this.rating,
     required this.votes,
@@ -34,7 +34,10 @@ class _DetailsMovieState extends State<DetailsMovie> {
               SizedBox(
                 height: height * 0.35,
                 width: width,
-                child: widget.imageBackgroud,
+                child: Image.network(
+                  MovieConstants.image + widget.imageBackgroud,
+                  fit: BoxFit.cover,
+                ),
               ),
               Positioned(
                 bottom: 0,
