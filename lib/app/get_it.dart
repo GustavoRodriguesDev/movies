@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-
+import 'core/constants/movies_api.dart';
 import 'core/service/http_service/http_service.dart';
 import 'modules/home/store/home_store.dart';
 import 'modules/movies/domain/repository/movies_repository.dart';
@@ -19,7 +19,7 @@ void setup() {
   getIt.registerFactory<Dio>(
     () => Dio(
       BaseOptions(
-        baseUrl: 'https://api.themoviedb.org/3',
+        baseUrl: MovieConstants.baseUrl,
         queryParameters: {
           'api_key': 'fda8099f4436a999739a94af37f5873d',
           'language': 'pt-BR',
