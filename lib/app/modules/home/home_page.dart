@@ -4,8 +4,10 @@ import '../../core/constants/movies_api.dart';
 import '../../core/widgets/appbar/custom_app_bar.dart';
 import '../../core/widgets/card/movie_card.dart';
 import '../../core/widgets/card/movie_card_shimmer.dart';
+import '../../core/widgets/navigator/custom_navigator.dart';
 import 'store/home_store.dart';
 import 'store/state/home_state.dart';
+import 'subpage/details_movie.dart';
 
 class HomePage extends StatefulWidget {
   final HomeStore homeStore;
@@ -23,6 +25,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+
     homeStore.fetchAllMovies();
   }
 
@@ -65,17 +68,23 @@ class _HomePageState extends State<HomePage> {
                 itemCount: value.listMovies.length,
                 itemBuilder: (context, index) {
                   final movie = value.listMovies[index];
-                  final imageBackgroud = Image.network(
-                    MovieConstants.image + movie.backdropPath,
-                    fit: BoxFit.fill,
-                  );
+                  precacheImage(Image.network(MovieConstants.image + movie.backdropPath).image, context);
                   return MovieCard(
                     ratingMovie: movie.voteAverage.toDouble(),
                     nameMovie: movie.title,
                     pathImage: movie.posterPath,
-                    imageBackgroud: imageBackgroud,
-                    votes: movie.voteCount,
-                    description: movie.overview,
+                    onTap: () {
+                      CustomNavigator.pushSlidesTransition(
+                        context,
+                        DetailsMovie(
+                          imageBackgroud: movie.backdropPath,
+                          nameMovie: movie.title,
+                          rating: movie.voteAverage.toDouble(),
+                          votes: movie.voteCount,
+                          description: movie.overview,
+                        ),
+                      );
+                    },
                   );
                 },
               );
