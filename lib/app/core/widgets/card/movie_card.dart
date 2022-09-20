@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import '../../../modules/home/subpage/details_movie.dart';
 import '../componentes/image_postar.dart';
 import '../componentes/star_rating.dart';
+import '../navigator/custom_navigator.dart';
 
 class MovieCard extends StatelessWidget {
   final String pathImage;
   final String nameMovie;
   final double ratingMovie;
-  final String imageBackgroud;
+  final Image imageBackgroud;
   final int votes;
   final String description;
   const MovieCard({
@@ -26,28 +27,15 @@ class MovieCard extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: () {
-        Navigator.push(
+        CustomNavigator.pushSlidesTransition(
           context,
-          PageRouteBuilder(
-            transitionDuration: const Duration(milliseconds: 800),
-            pageBuilder: (context, animation, animationTwo) => DetailsMovie(
-              imageBackgroud: imageBackgroud,
-              pathImage: pathImage,
-              nameMovie: nameMovie,
-              rating: ratingMovie,
-              votes: votes,
-              description: description,
-            ),
-            transitionsBuilder: (context, animation, secondaryAnimation, child) {
-              const begin = Offset(0.0, 1.0);
-              const end = Offset.zero;
-              const curve = Curves.fastOutSlowIn;
-              var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-              return SlideTransition(
-                position: animation.drive(tween),
-                child: child,
-              );
-            },
+          DetailsMovie(
+            imageBackgroud: imageBackgroud,
+            pathImage: pathImage,
+            nameMovie: nameMovie,
+            rating: ratingMovie,
+            votes: votes,
+            description: description,
           ),
         );
       },
