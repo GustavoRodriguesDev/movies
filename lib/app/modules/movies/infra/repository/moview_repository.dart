@@ -3,6 +3,7 @@ import '../../../../core/error/errors.dart';
 import '../../domain/dto/pagination_movie_dto.dart';
 import '../../domain/dto/paran_search_movie_dto.dart';
 import '../../domain/repository/movies_repository.dart';
+import '../../domain/types/type_movies.dart';
 import '../datasource/movies_datasource.dart';
 
 class MoviesRepository implements IMoviesRepository {
@@ -20,7 +21,7 @@ class MoviesRepository implements IMoviesRepository {
   }
 
   @override
-  ReturnSearchMovies searchMovies(ParanSearchMovieDto paran) async {
+  ReturnFetchMovies searchMovies(ParanSearchMovieDto paran) async {
     try {
       final response = await datasource.searchMovies(paran);
       return Right(response);
