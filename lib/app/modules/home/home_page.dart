@@ -4,10 +4,12 @@ import '../../core/widgets/appbar/custom_app_bar.dart';
 import '../../core/widgets/card/movie_card.dart';
 import '../../core/widgets/card/movie_card_shimmer.dart';
 import '../../core/widgets/navigator/custom_navigator.dart';
+import '../../get_it.dart';
 import 'store/home_store.dart';
 import 'store/state/home_state.dart';
 import 'subpage/details_movie.dart';
-import 'subpage/search_movie.dart';
+import 'subpage/search_movie/search_movie.dart';
+import 'subpage/search_movie/store/search_movie_store.dart';
 
 class HomePage extends StatefulWidget {
   final HomeStore homeStore;
@@ -35,7 +37,7 @@ class _HomePageState extends State<HomePage> {
       appBar: CustomAppBar(onPressed: () {
         CustomNavigator.pushSlidesTransition(
           context,
-          const SearchMoviePage(),
+          SearchMoviePage(store: getIt<SearchMovieStore>()),
         );
       }),
       body: Padding(
