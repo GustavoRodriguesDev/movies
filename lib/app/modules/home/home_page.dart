@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../core/constants/movies_api.dart';
 import '../../core/widgets/appbar/custom_app_bar.dart';
 import '../../core/widgets/card/movie_card.dart';
@@ -8,6 +7,7 @@ import '../../core/widgets/navigator/custom_navigator.dart';
 import 'store/home_store.dart';
 import 'store/state/home_state.dart';
 import 'subpage/details_movie.dart';
+import 'subpage/search_movie.dart';
 
 class HomePage extends StatefulWidget {
   final HomeStore homeStore;
@@ -32,7 +32,12 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(),
+      appBar: CustomAppBar(onPressed: () {
+        CustomNavigator.pushSlidesTransition(
+          context,
+          const SearchMoviePage(),
+        );
+      }),
       body: Padding(
         padding: const EdgeInsets.only(left: 14, right: 14, top: 6),
         child: ValueListenableBuilder<HomeState>(
