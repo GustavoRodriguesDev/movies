@@ -11,10 +11,10 @@ class MoviesRepositoryMock extends Mock implements IMoviesRepository {}
 
 void main() {
   late IMoviesRepository repository;
-  late ISearchMovie usecase;
+  late ISearchMovieUsecase usecase;
   setUpAll(() {
     repository = MoviesRepositoryMock();
-    usecase = SearchMovie(repository);
+    usecase = SearchMovieUsecase(repository);
   });
   ParanSearchMovieDto dto = const ParanSearchMovieDto(searchParan: 'lord os the rings');
   test('Deve retonar um ListMovieEntity quando o metofo for chamado', () async {
