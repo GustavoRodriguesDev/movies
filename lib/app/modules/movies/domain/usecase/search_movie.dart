@@ -4,14 +4,14 @@ import '../dto/paran_search_movie_dto.dart';
 import '../repository/movies_repository.dart';
 import '../types/type_movies.dart';
 
-abstract class ISearchMovie {
+abstract class ISearchMovieUsecase {
   ReturnFetchMovies call(ParanSearchMovieDto paran);
 }
 
-class SearchMovie implements ISearchMovie {
+class SearchMovieUsecase implements ISearchMovieUsecase {
   final IMoviesRepository repository;
 
-  SearchMovie(this.repository);
+  SearchMovieUsecase(this.repository);
   @override
   ReturnFetchMovies call(ParanSearchMovieDto paran) async {
     if (paran.searchParan.isEmpty) {
