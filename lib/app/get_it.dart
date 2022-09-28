@@ -3,13 +3,13 @@ import 'package:get_it/get_it.dart';
 import 'core/constants/movies_api.dart';
 import 'core/service/http_service/http_service.dart';
 import 'modules/home/store/home_store.dart';
-import 'modules/home/subpage/search_movie/store/search_movie_store.dart';
 import 'modules/movies/domain/repository/movies_repository.dart';
 import 'modules/movies/domain/usecase/fetch_all_movies_usecase.dart';
 import 'modules/movies/domain/usecase/search_movie.dart';
 import 'modules/movies/external/datasource/movies_datasource.dart';
 import 'modules/movies/infra/datasource/movies_datasource.dart';
 import 'modules/movies/infra/repository/moview_repository.dart';
+import 'modules/search_movie/store/search_movie_store.dart';
 
 final getIt = GetIt.instance;
 

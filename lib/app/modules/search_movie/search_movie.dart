@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:movies/app/modules/home/subpage/details_movie.dart';
-import 'package:movies/app/modules/home/subpage/search_movie/store/search_movie_store.dart';
-import '../../../../core/constants/movies_api.dart';
-import '../../../../core/widgets/button/icon_button_custon.dart';
-import '../../../../core/widgets/card/movie_card.dart';
-import '../../../../core/widgets/card/movie_card_shimmer.dart';
-import '../../../../core/widgets/navigator/custom_navigator.dart';
+
+import '../../core/constants/movies_api.dart';
+import '../../core/widgets/button/icon_button_custon.dart';
+import '../../core/widgets/card/movie_card.dart';
+import '../../core/widgets/card/movie_card_shimmer.dart';
+import '../../core/widgets/navigator/custom_navigator.dart';
+import 'store/search_movie_store.dart';
 import 'store/state/search_state.dart';
 
 class SearchMoviePage extends StatefulWidget {
