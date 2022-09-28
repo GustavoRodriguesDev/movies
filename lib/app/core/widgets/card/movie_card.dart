@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../componentes/image_postar.dart';
+import '../componentes/image_poster.dart';
 import '../componentes/star_rating.dart';
 
 class MovieCard extends StatelessWidget {
