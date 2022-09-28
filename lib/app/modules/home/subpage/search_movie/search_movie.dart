@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:movies/app/modules/home/subpage/details_movie.dart';
 import 'package:movies/app/modules/home/subpage/search_movie/store/search_movie_store.dart';
-
 import '../../../../core/constants/movies_api.dart';
 import '../../../../core/widgets/button/icon_button_custon.dart';
 import '../../../../core/widgets/card/movie_card.dart';
@@ -23,8 +21,14 @@ class SearchMoviePage extends StatefulWidget {
 
 class _SearchMoviePageState extends State<SearchMoviePage> {
   final TextEditingController search = TextEditingController();
-
   SearchMovieStore get store => widget.store;
+
+  @override
+  void dispose() {
+    store.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -58,6 +62,7 @@ class _SearchMoviePageState extends State<SearchMoviePage> {
                     child: TextFormField(
                       style: const TextStyle(color: Colors.white),
                       controller: search,
+                      onEditingComplete: () => store.searchMovie(search.text),
                       decoration: InputDecoration(
                           focusedBorder: const UnderlineInputBorder(borderSide: BorderSide(color: Colors.transparent)),
                           focusColor: Colors.white,
@@ -104,6 +109,32 @@ class _SearchMoviePageState extends State<SearchMoviePage> {
                     if (value is ErrorSearchState) {
                       return Text(value.error.message);
                     }
+                    if (value is EmptySearchState) {
+                      return Center(
+                        child: SizedBox(
+                          child: Column(
+                            children: [
+                              SizedBox(height: width * .2),
+                              Icon(
+                                Icons.local_movies_rounded,
+                                size: width * 0.25,
+                                color: Colors.white.withOpacity(0.5),
+                              ),
+                              SizedBox(height: width * .1),
+                              Text(
+                                'Não achamos um filme relacionado com ${search.text}',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white.withOpacity(0.5),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    }
                     if (value is SuccessSearchState) {
                       return SizedBox(
                         height: height * 0.795,
@@ -140,7 +171,29 @@ class _SearchMoviePageState extends State<SearchMoviePage> {
                         ),
                       );
                     }
-                    return Container();
+                    return Center(
+                      child: SizedBox(
+                        child: Column(
+                          children: [
+                            SizedBox(height: width * .2),
+                            Icon(
+                              Icons.local_movies_rounded,
+                              size: width * 0.25,
+                              color: Colors.white.withOpacity(0.5),
+                            ),
+                            SizedBox(height: width * .1),
+                            Text(
+                              'Experimente buscar pelo seu filme favorito',
+                              style: TextStyle(
+                                color: Colors.white.withOpacity(0.5),
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
                   }),
                 ),
               ),

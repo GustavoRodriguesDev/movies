@@ -17,4 +17,6 @@ class ErrorSearchState implements SearchState {
 
 class LoadingSearchState implements SearchState {}
 
+class InitSearchState implements SearchState {}
+
 class EmptySearchState implements SearchState {}
