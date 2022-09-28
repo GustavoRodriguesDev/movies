@@ -22,7 +22,11 @@ class ImagePoster extends StatelessWidget {
         MovieConstants.image + pathImage,
         fit: BoxFit.fill,
         errorBuilder: (context, error, stackTrace) {
-          return const Center(child: Text('Image not found'));
+          return const Center(
+              child: Text(
+            'Image not found',
+            style: TextStyle(color: Colors.white),
+          ));
         },
         loadingBuilder: (_, widget, image) {
           if (image == null) {
