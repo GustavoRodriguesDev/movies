@@ -150,7 +150,7 @@ class _SearchMoviePageState extends State<SearchMoviePage> {
                           itemCount: value.listMovies.length,
                           itemBuilder: (context, index) {
                             final movie = value.listMovies[index];
-                            precacheImage(Image.network(MovieConstants.image + movie.backdropPath).image, context);
+                            precacheImage(Image.network(ApiConstants.image + movie.backdropPath).image, context);
                             return MovieCard(
                               ratingMovie: movie.voteAverage.toDouble(),
                               nameMovie: movie.title,

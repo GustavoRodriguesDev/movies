@@ -16,7 +16,7 @@ class MoviesDatasource implements IMoviesDatasource {
   @override
   Future<List<MovieEntity>> getAllMovies(PaginationMovieDto page) async {
     try {
-      final response = await http.get(MovieConstants.nowPlaying, queryParameters: {'page': page.page});
+      final response = await http.get(ApiConstants.nowPlaying, queryParameters: {'page': page.page});
       return MoviesMapper.fromJson(response.data['results']);
     } on Failure catch (e) {
       rethrow;
@@ -26,7 +26,7 @@ class MoviesDatasource implements IMoviesDatasource {
   @override
   Future<List<MovieEntity>> searchMovies(ParanSearchMovieDto paran) async {
     try {
-      final response = await http.get(MovieConstants.searchMovie, queryParameters: {'query': paran.searchParan});
+      final response = await http.get(ApiConstants.searchMovie, queryParameters: {'query': paran.searchParan});
       return MoviesMapper.fromJson(response.data['results']);
     } on Failure catch (e) {
       rethrow;

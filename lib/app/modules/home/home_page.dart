@@ -11,7 +11,6 @@ import 'store/home_store.dart';
 import 'store/state/home_state.dart';
 import 'subpage/details_movie.dart';
 
-
 class HomePage extends StatefulWidget {
   final HomeStore homeStore;
   const HomePage({
@@ -76,7 +75,7 @@ class _HomePageState extends State<HomePage> {
                 itemCount: value.listMovies.length,
                 itemBuilder: (context, index) {
                   final movie = value.listMovies[index];
-                  precacheImage(Image.network(MovieConstants.image + movie.backdropPath).image, context);
+                  precacheImage(Image.network(ApiConstants.image + movie.backdropPath).image, context);
                   return MovieCard(
                     ratingMovie: movie.voteAverage.toDouble(),
                     nameMovie: movie.title,

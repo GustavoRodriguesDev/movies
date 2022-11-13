@@ -19,7 +19,7 @@ class ImagePoster extends StatelessWidget {
         color: Colors.white.withOpacity(0.1),
       ),
       child: Image.network(
-        MovieConstants.image + pathImage,
+        ApiConstants.image + pathImage,
         fit: BoxFit.fill,
         errorBuilder: (context, error, stackTrace) {
           return const Center(

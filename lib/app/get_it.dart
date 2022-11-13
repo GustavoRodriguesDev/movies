@@ -21,7 +21,7 @@ void setup() {
   getIt.registerFactory<Dio>(
     () => Dio(
       BaseOptions(
-        baseUrl: MovieConstants.baseUrl,
+        baseUrl: ApiConstants.baseUrl,
         queryParameters: {
           'api_key': 'fda8099f4436a999739a94af37f5873d',
           'language': 'pt-BR',

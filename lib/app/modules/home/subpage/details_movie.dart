@@ -35,7 +35,7 @@ class _DetailsMovieState extends State<DetailsMovie> {
                 height: height * 0.35,
                 width: width,
                 child: Image.network(
-                  MovieConstants.image + widget.imageBackgroud,
+                  ApiConstants.image + widget.imageBackgroud,
                   fit: BoxFit.cover,
                   errorBuilder: (context, error, stackTrace) {
                     return const Center(
