@@ -14,7 +14,9 @@ class CastDatasource implements ICastDatasource {
   Future<List<CastEntity>> getAllActores(int movieId) async {
     try {
       final response = await http.get('${ApiConstants.movie}/$movieId${ApiConstants.credits}');
-      return CastMapper.fromMap(response.data['cast']);
+
+      final listCast = CastMapper.fromMap(response.data['cast']);
+      return listCast;
     } on Failure catch (e) {
       rethrow;
     }
