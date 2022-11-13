@@ -29,10 +29,4 @@ class MoviesRepository implements IMoviesRepository {
       return Left(e);
     }
   }
-  
-  @override
-  ReturnFetchActoresMovies getAllActores(int movieId) {
-    // TODO: implement getAllActores
-    throw UnimplementedError();
-  }
 }
