@@ -1,10 +1,8 @@
-
 import 'package:movies/app/modules/cast/domain/entity/cast_entity.dart';
 import 'package:movies/app/modules/cast/external/error/cast_mapper_error.dart';
 
-
 class CastMapper {
-  static List<CastEntity> fromMap(List<Map<String, dynamic>> casts) {
+  static List<CastEntity> fromMap(List casts) {
     try {
       return casts
           .map((cast) => CastEntity(
@@ -22,7 +20,7 @@ class CastMapper {
                 profilePath: cast['profile_path'] ?? '',
               ))
           .toList();
-    }  catch (e,s) {
+    } catch (e, s) {
       throw CastMapperError(message: e.toString(), stackTrace: s);
     }
   }

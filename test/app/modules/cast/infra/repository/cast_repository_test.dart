@@ -5,7 +5,6 @@ import 'package:movies/app/modules/cast/domain/entity/cast_entity.dart';
 import 'package:movies/app/modules/cast/domain/repository/cast_repository.dart';
 import 'package:movies/app/modules/cast/infra/datasource/cast_datasource.dart';
 import 'package:movies/app/modules/cast/infra/repository/cast_repository.dart';
-import 'package:movies/app/modules/movies/domain/entities/movie_entity.dart';
 
 class CatsDatasourceMock extends Mock implements ICastDatasource {}
 

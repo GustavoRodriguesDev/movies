@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:movies/app/modules/home/subpage/store/details_movies_store.dart';
+
 import '../../../core/constants/movies_api.dart';
 
 class DetailsMovie extends StatefulWidget {
@@ -8,20 +10,31 @@ class DetailsMovie extends StatefulWidget {
   final double rating;
   final int votes;
   final String description;
+  final DetaisMoviesStore detaisMoviesStore;
+  final int movieId;
   const DetailsMovie({
-    super.key,
+    Key? key,
     required this.imageBackgroud,
     required this.nameMovie,
     required this.rating,
     required this.votes,
     required this.description,
-  });
+    required this.detaisMoviesStore,
+    required this.movieId,
+  }) : super(key: key);
 
   @override
   State<DetailsMovie> createState() => _DetailsMovieState();
 }
 
 class _DetailsMovieState extends State<DetailsMovie> {
+  DetaisMoviesStore get detaisMoviesStore => widget.detaisMoviesStore;
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    detaisMoviesStore.fetchAllActors(widget.movieId);
+  }
+
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
