@@ -188,6 +188,9 @@ class _DetailsMovieState extends State<DetailsMovie> {
                               return CastCard(
                                 castImage: cast.profilePath,
                                 castName: cast.originalName,
+                                onTap: () {
+                                  //TODO: implementar navegação para tela dos atores
+                                },
                               );
                             },
                           );
