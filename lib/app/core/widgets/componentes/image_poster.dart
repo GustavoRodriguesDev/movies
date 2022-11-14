@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../constants/movies_api.dart';
-import '../card/movie_card_shimmer.dart';
+import '../shimmer/movie_card_shimmer.dart';
 
 class ImagePoster extends StatelessWidget {
   final String pathImage;
