@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:movies/app/core/widgets/shimmer/text_shimmer.dart';
 
 import 'package:movies/app/modules/home/subpage/store/details_movies_store.dart';
+import 'package:movies/app/modules/home/subpage/widget/rating_movie.dart';
 
 import '../../../core/constants/movies_api.dart';
 import '../../../core/widgets/card/cast_card.dart';
@@ -114,29 +116,9 @@ class _DetailsMovieState extends State<DetailsMovie> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                      ),
-                      Text(
-                        '${widget.rating} ',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: width * 0.05,
-                        ),
-                      ),
-                      Text(
-                        '| ${widget.votes}',
-                        style: TextStyle(
-                          color: Colors.white.withOpacity(0.6),
-                          fontSize: width * 0.04,
-                        ),
-                      )
-                    ],
+                  RatingMovie(
+                    rating: widget.rating,
+                    votes: widget.votes,
                   ),
                   SizedBox(height: width * 0.04),
                   Text(
@@ -176,11 +158,26 @@ class _DetailsMovieState extends State<DetailsMovie> {
                             itemCount: 5,
                             shrinkWrap: true,
                             itemBuilder: (context, index) {
-                              return const Center(child: CastCardShimmer());
+                              return Center(
+                                  child: Column(
+                                children: [
+                                  const CastCardShimmer(),
+                                  SizedBox(height: width * 0.02),
+                                  const TextShimmer(),
+                                ],
+                              ));
                             },
                           );
                         }
-                        if (value is ErrorDetailsMoviesState) {}
+                        if (value is ErrorDetailsMoviesState) {
+                          return Text(
+                            'Elenco não encontrado',
+                            style: TextStyle(
+                              color: Colors.white.withOpacity(0.6),
+                              fontSize: width * 0.06,
+                            ),
+                          );
+                        }
                         if (value is SuccessDetailsMoviesState) {
                           return ListView.builder(
                             itemCount: value.listCast.length,
