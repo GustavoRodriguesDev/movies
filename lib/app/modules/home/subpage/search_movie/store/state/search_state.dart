@@ -1,7 +1,8 @@
 
 
-import '../../../../core/error/errors.dart';
-import '../../../movies/domain/entities/movie_entity.dart';
+
+import '../../../../../../core/error/errors.dart';
+import '../../../../../movies/domain/entities/movie_entity.dart';
 
 abstract class SearchState {}
 

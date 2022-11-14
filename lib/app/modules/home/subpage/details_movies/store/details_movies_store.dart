@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
-
-import '../../../cast/domain/usecase/fetch_all_actores_movie.dart';
+import '../../../../cast/domain/usecase/fetch_all_actores_movie.dart';
 import 'state/state_details_movies.dart';
 
 class DetaisMoviesStore extends ValueNotifier<DetailsMoviesState> {

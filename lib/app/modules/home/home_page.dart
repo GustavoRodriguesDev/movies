@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:movies/app/modules/home/subpage/store/details_movies_store.dart';
+
 import '../../core/constants/movies_api.dart';
 import '../../core/widgets/appbar/custom_app_bar.dart';
 import '../../core/widgets/card/movie_card.dart';
 import '../../core/widgets/shimmer/movie_card_shimmer.dart';
 import '../../core/widgets/navigator/custom_navigator.dart';
 import '../../get_it.dart';
-import '../search_movie/search_movie.dart';
-import '../search_movie/store/search_movie_store.dart';
+
 import 'store/home_store.dart';
 import 'store/state/home_state.dart';
-import 'subpage/details_movie_page.dart';
+import 'subpage/details_movies/details_movie_page.dart';
+import 'subpage/details_movies/store/details_movies_store.dart';
+import 'subpage/search_movie/search_movie_page.dart';
+import 'subpage/search_movie/store/search_movie_store.dart';
 
 class HomePage extends StatefulWidget {
   final HomeStore homeStore;

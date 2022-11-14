@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:movies/app/core/widgets/shimmer/text_shimmer.dart';
+import 'package:movies/app/modules/home/subpage/details_movies/store/state/state_details_movies.dart';
+import '../../../../core/constants/movies_api.dart';
+import '../../../../core/widgets/card/cast_card.dart';
+import '../../../../core/widgets/shimmer/cast_card_shimmer.dart';
 
-import 'package:movies/app/modules/home/subpage/store/details_movies_store.dart';
-import 'package:movies/app/modules/home/subpage/widget/rating_movie.dart';
+import 'store/details_movies_store.dart';
+import 'widget/rating_movie.dart';
 
-import '../../../core/constants/movies_api.dart';
-import '../../../core/widgets/card/cast_card.dart';
-import '../../../core/widgets/shimmer/cast_card_shimmer.dart';
-import 'store/state/state_details_movies.dart';
 
 class DetailsMovie extends StatefulWidget {
   final String imageBackgroud;
