@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:movies/app/modules/search_movie/store/search_movie_store.dart';
 import 'core/constants/movies_api.dart';
 import 'core/service/http_service/http_service.dart';
 import 'modules/cast/domain/repository/cast_repository.dart';
@@ -61,4 +62,5 @@ void setup() {
   //home module
   getIt.registerSingleton<HomeStore>(HomeStore(getIt.get<IFetchAllMoviesUsecase>()));
   getIt.registerSingleton<DetaisMoviesStore>(DetaisMoviesStore(getIt.get<IFetchAllActoresMovies>()));
+  getIt.registerSingleton<SearchMovieStore>(SearchMovieStore(getIt.get<ISearchMovieUsecase>()));
 }
