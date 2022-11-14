@@ -25,7 +25,7 @@ class _MovieCardShimmerState extends State<MovieCardShimmer> {
       child: Shimmer.fromColors(
         period: const Duration(milliseconds: 700),
         baseColor: Colors.white,
-        highlightColor: Colors.grey[100]!,
+        highlightColor: Colors.grey[400]!,
         child: Container(
           height: 300,
           width: 300,
