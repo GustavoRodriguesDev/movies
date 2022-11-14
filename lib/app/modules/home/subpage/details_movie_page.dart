@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:movies/app/modules/home/subpage/store/details_movies_store.dart';
 
 import '../../../core/constants/movies_api.dart';
+import '../../../core/widgets/card/cast_card.dart';
 import '../../../core/widgets/shimmer/cast_card_shimmer.dart';
 import 'store/state/state_details_movies.dart';
 
@@ -165,21 +166,18 @@ class _DetailsMovieState extends State<DetailsMovie> {
                   ),
                   SizedBox(height: width * 0.04),
                   SizedBox(
-                    height: 165,
+                    height: width * 0.42,
                     width: width,
                     child: ValueListenableBuilder<DetailsMoviesState>(
                       valueListenable: detaisMoviesStore,
                       builder: (context, value, child) {
                         if (value is LoadingDetailsMoviesState) {
-                          SizedBox(
-                            height: 90,
-                            child: ListView.builder(
-                              itemCount: 5,
-                              shrinkWrap: true,
-                              itemBuilder: (context, index) {
-                                return const Center(child: CastCardShimmer());
-                              },
-                            ),
+                          ListView.builder(
+                            itemCount: 5,
+                            shrinkWrap: true,
+                            itemBuilder: (context, index) {
+                              return const Center(child: CastCardShimmer());
+                            },
                           );
                         }
                         if (value is ErrorDetailsMoviesState) {}
@@ -190,47 +188,9 @@ class _DetailsMovieState extends State<DetailsMovie> {
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (context, index) {
                               final cast = value.listCast[index];
-                              return Column(
-                                children: [
-                                  Container(
-                                    height: 90,
-                                    width: 90,
-                                    margin: const EdgeInsets.symmetric(horizontal: 6),
-                                    clipBehavior: Clip.antiAlias,
-                                    decoration: const BoxDecoration(shape: BoxShape.circle),
-                                    child: Image.network(
-                                      ApiConstants.image + cast.profilePath,
-                                      fit: BoxFit.cover,
-                                      errorBuilder: (context, error, stackTrace) {
-                                        return const Center(
-                                            child: Text(
-                                          'Image not found',
-                                          style: TextStyle(color: Colors.white),
-                                        ));
-                                      },
-                                      loadingBuilder: (_, widget, image) {
-                                        if (image == null) {
-                                          return widget;
-                                        }
-
-                                        return const CastCardShimmer();
-                                      },
-                                    ),
-                                  ),
-                                  SizedBox(height: width * 0.02),
-                                  SizedBox(
-                                    width: 90,
-                                    child: Text(
-                                      cast.originalName,
-                                      // overflow: TextOverflow.ellipsis,
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: Colors.white.withOpacity(0.6),
-                                        fontSize: width * 0.04,
-                                      ),
-                                    ),
-                                  )
-                                ],
+                              return CastCard(
+                                castImage: cast.profilePath,
+                                castName: cast.originalName,
                               );
                             },
                           );
