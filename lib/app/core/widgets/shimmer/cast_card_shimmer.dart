@@ -12,10 +12,10 @@ class _CastCardShimmer extends State<CastCardShimmer> {
   @override
   Widget build(BuildContext context) {
     // final height = MediaQuery.of(context).size.height;
-    // final width = MediaQuery.of(context).size.width;
+    final width = MediaQuery.of(context).size.width;
     return Container(
-      height: 90,
-      width: 90,
+      height: width * 0.22,
+      width: width * 0.22,
       clipBehavior: Clip.antiAlias,
       decoration: const BoxDecoration(shape: BoxShape.circle),
       child: Shimmer.fromColors(
@@ -23,8 +23,8 @@ class _CastCardShimmer extends State<CastCardShimmer> {
         baseColor: Colors.white,
         highlightColor: Colors.grey[400]!,
         child: Container(
-          height: 70,
-          width: 70,
+          height: width * 0.22,
+          width: width * 0.22,
           color: Colors.white.withOpacity(0.2),
         ),
       ),
