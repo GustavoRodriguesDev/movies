@@ -3,7 +3,7 @@ import 'package:movies/app/modules/home/subpage/store/details_movies_store.dart'
 import '../../core/constants/movies_api.dart';
 import '../../core/widgets/appbar/custom_app_bar.dart';
 import '../../core/widgets/card/movie_card.dart';
-import '../../core/widgets/card/movie_card_shimmer.dart';
+import '../../core/widgets/shimmer/movie_card_shimmer.dart';
 import '../../core/widgets/navigator/custom_navigator.dart';
 import '../../get_it.dart';
 import '../search_movie/search_movie.dart';

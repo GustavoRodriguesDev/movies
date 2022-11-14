@@ -4,7 +4,7 @@ import 'package:movies/app/modules/home/subpage/details_movie_page.dart';
 import '../../core/constants/movies_api.dart';
 import '../../core/widgets/button/icon_button_custon.dart';
 import '../../core/widgets/card/movie_card.dart';
-import '../../core/widgets/card/movie_card_shimmer.dart';
+import '../../core/widgets/shimmer/movie_card_shimmer.dart';
 import '../../core/widgets/navigator/custom_navigator.dart';
 import '../../get_it.dart';
 import '../home/subpage/store/details_movies_store.dart';
