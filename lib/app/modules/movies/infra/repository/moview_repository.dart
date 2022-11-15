@@ -29,4 +29,14 @@ class MoviesRepository implements IMoviesRepository {
       return Left(e);
     }
   }
+
+  @override
+  ReturnFetchMovies getSimilarMovies(int movieId) async {
+    try {
+      final response = await datasource.getSimilarMovies(movieId);
+      return Right(response);
+    } on Failure catch (e) {
+      return Left(e);
+    }
+  }
 }

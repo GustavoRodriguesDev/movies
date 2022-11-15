@@ -5,4 +5,5 @@ import '../types/type_movies.dart';
 abstract class IMoviesRepository {
   ReturnFetchMovies getAllMovies(PaginationMovieDto page);
   ReturnFetchMovies searchMovies(ParanSearchMovieDto paran);
+  ReturnFetchMovies getSimilarMovies(int movieId);
 }

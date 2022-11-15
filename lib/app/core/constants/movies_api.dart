@@ -7,4 +7,5 @@ class ApiConstants {
   static const image = 'https://image.tmdb.org/t/p/w500';
   static const movie = '/movie';
   static const credits = '/credits';
+  static const similar = '/similar';
 }

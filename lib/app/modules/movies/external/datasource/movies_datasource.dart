@@ -32,4 +32,16 @@ class MoviesDatasource implements IMoviesDatasource {
       rethrow;
     }
   }
+
+  @override
+  Future<List<MovieEntity>> getSimilarMovies(int movieID) async {
+    try {
+      final response = await http.get(
+        '${ApiConstants.movie}/$movieID${ApiConstants.similar}',
+      );
+      return MoviesMapper.fromJson(response.data['results']);
+    } on Failure catch (e) {
+      rethrow;
+    }
+  }
 }
