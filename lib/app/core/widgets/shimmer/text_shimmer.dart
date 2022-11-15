@@ -16,8 +16,10 @@ class _TextShimmerState extends State<TextShimmer> {
     return Container(
       height: width * 0.05,
       width: width * 0.22,
-      clipBehavior: Clip.antiAlias,
-      decoration: const BoxDecoration(shape: BoxShape.circle),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      alignment: Alignment.center,
       child: Shimmer.fromColors(
         period: const Duration(milliseconds: 700),
         baseColor: Colors.white,

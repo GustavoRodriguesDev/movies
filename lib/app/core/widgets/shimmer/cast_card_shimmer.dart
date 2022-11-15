@@ -16,6 +16,7 @@ class _CastCardShimmer extends State<CastCardShimmer> {
     return Container(
       height: width * 0.22,
       width: width * 0.22,
+      margin: const EdgeInsets.symmetric(horizontal: 6),
       clipBehavior: Clip.antiAlias,
       decoration: const BoxDecoration(shape: BoxShape.circle),
       child: Shimmer.fromColors(

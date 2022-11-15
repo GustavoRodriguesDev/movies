@@ -8,7 +8,6 @@ import '../../../../core/widgets/shimmer/cast_card_shimmer.dart';
 import 'store/details_movies_store.dart';
 import 'widget/rating_movie.dart';
 
-
 class DetailsMovie extends StatefulWidget {
   final String imageBackgroud;
   final String nameMovie;
@@ -154,18 +153,20 @@ class _DetailsMovieState extends State<DetailsMovie> {
                       valueListenable: detaisMoviesStore,
                       builder: (context, value, child) {
                         if (value is LoadingDetailsMoviesState) {
-                          ListView.builder(
+                          return ListView.builder(
                             itemCount: 5,
                             shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
                             itemBuilder: (context, index) {
                               return Center(
-                                  child: Column(
-                                children: [
-                                  const CastCardShimmer(),
-                                  SizedBox(height: width * 0.02),
-                                  const TextShimmer(),
-                                ],
-                              ));
+                                child: Column(
+                                  children: [
+                                    const CastCardShimmer(),
+                                    SizedBox(height: width * 0.02),
+                                    const TextShimmer(),
+                                  ],
+                                ),
+                              );
                             },
                           );
                         }
