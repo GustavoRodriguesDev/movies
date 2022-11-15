@@ -1,12 +1,24 @@
 import 'package:movies/app/core/error/errors.dart';
 import 'package:movies/app/modules/cast/domain/entity/cast_entity.dart';
+import 'package:movies/app/modules/movies/domain/entities/movie_entity.dart';
 
 class DetailsMoviesState {}
 
 class SuccessDetailsMoviesState extends DetailsMoviesState {
   final List<CastEntity> listCast;
+  final List<MovieEntity> movieEntity;
 
-  SuccessDetailsMoviesState(this.listCast);
+  SuccessDetailsMoviesState({this.listCast = const [], this.movieEntity = const []});
+
+  SuccessDetailsMoviesState copyWith({
+    List<CastEntity>? listCast,
+    List<MovieEntity>? movieEntity,
+  }) {
+    return SuccessDetailsMoviesState(
+      listCast: listCast ?? this.listCast,
+      movieEntity: movieEntity ?? this.movieEntity,
+    );
+  }
 }
 
 class ErrorDetailsMoviesState extends DetailsMoviesState {
@@ -16,4 +28,5 @@ class ErrorDetailsMoviesState extends DetailsMoviesState {
 }
 
 class EmpityDetailsMoviesState extends DetailsMoviesState {}
+
 class LoadingDetailsMoviesState extends DetailsMoviesState {}

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:movies/app/modules/home/subpage/search_movie/store/search_movie_store.dart';
+import 'package:movies/app/modules/movies/domain/usecase/fetch_similar_movies_usecase.dart';
 import 'core/constants/movies_api.dart';
 import 'core/service/http_service/http_service.dart';
 import 'modules/cast/domain/repository/cast_repository.dart';
@@ -37,6 +38,7 @@ void setup() {
   //
   //movie module
   getIt.registerSingleton<IMoviesDatasource>(MoviesDatasource(getIt.get<IHttpService>()));
+
   //cast module
   getIt.registerSingleton<ICastDatasource>(CastDatasource(getIt.get<IHttpService>()));
 
@@ -53,7 +55,7 @@ void setup() {
   //movie module
   getIt.registerSingleton<IFetchAllMoviesUsecase>(FetchAllMoviesUsecase(getIt.get<IMoviesRepository>()));
   getIt.registerSingleton<ISearchMovieUsecase>(SearchMovieUsecase(getIt.get<IMoviesRepository>()));
-
+  getIt.registerSingleton<IFetchSimilarMoviesUsecase>(FetchSimilarMoviesUsecase(getIt.get<IMoviesRepository>()));
   //cast module
   getIt.registerSingleton<IFetchAllActoresMovies>(FetchAllActoresMovies(getIt.get<ICastRepository>()));
 
@@ -61,6 +63,11 @@ void setup() {
   //
   //home module
   getIt.registerSingleton<HomeStore>(HomeStore(getIt.get<IFetchAllMoviesUsecase>()));
-  getIt.registerSingleton<DetaisMoviesStore>(DetaisMoviesStore(getIt.get<IFetchAllActoresMovies>()));
+  getIt.registerSingleton<DetaisMoviesStore>(
+    DetaisMoviesStore(
+      fetchAllActoresMovies: getIt.get<IFetchAllActoresMovies>(),
+      fetchSimilarMoviesUsecase: getIt.get<IFetchSimilarMoviesUsecase>(),
+    ),
+  );
   getIt.registerSingleton<SearchMovieStore>(SearchMovieStore(getIt.get<ISearchMovieUsecase>()));
 }

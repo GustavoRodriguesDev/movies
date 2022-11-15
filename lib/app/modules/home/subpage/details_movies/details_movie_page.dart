@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:movies/app/core/widgets/shimmer/movie_card_shimmer.dart';
 import 'package:movies/app/core/widgets/shimmer/text_shimmer.dart';
 import 'package:movies/app/modules/home/subpage/details_movies/store/state/state_details_movies.dart';
 import '../../../../core/constants/movies_api.dart';
 import '../../../../core/widgets/card/cast_card.dart';
+import '../../../../core/widgets/card/movie_card.dart';
+import '../../../../core/widgets/navigator/custom_navigator.dart';
 import '../../../../core/widgets/shimmer/cast_card_shimmer.dart';
 
+import '../../../../get_it.dart';
 import 'store/details_movies_store.dart';
 import 'widget/rating_movie.dart';
 
 class DetailsMovie extends StatefulWidget {
   final String imageBackgroud;
+  final String imagePoster;
   final String nameMovie;
   final double rating;
   final int votes;
@@ -25,6 +30,7 @@ class DetailsMovie extends StatefulWidget {
     required this.description,
     required this.detaisMoviesStore,
     required this.movieId,
+    required this.imagePoster,
   }) : super(key: key);
 
   @override
@@ -36,7 +42,7 @@ class _DetailsMovieState extends State<DetailsMovie> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    detaisMoviesStore.fetchAllActors(widget.movieId);
+    detaisMoviesStore.initalDetails(widget.movieId);
   }
 
   @override
@@ -192,6 +198,83 @@ class _DetailsMovieState extends State<DetailsMovie> {
                                 onTap: () {
                                   //TODO: implementar navegação para tela dos atores
                                 },
+                              );
+                            },
+                          );
+                        }
+                        return Container();
+                      },
+                    ),
+                  ),
+                  Text(
+                    'Filmes Similares',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: width * 0.06,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 350,
+                    width: width,
+                    child: ValueListenableBuilder(
+                      valueListenable: detaisMoviesStore,
+                      builder: (context, value, child) {
+                        if (value is LoadingDetailsMoviesState) {
+                          return ListView.builder(
+                            itemCount: 5,
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                alignment: Alignment.center,
+                                padding: const EdgeInsets.all(6),
+                                child: const MovieCardShimmer(),
+                              );
+                            },
+                          );
+                        }
+                        if (value is ErrorDetailsMoviesState) {
+                          return Text(
+                            'Filmes não econtrados',
+                            style: TextStyle(
+                              color: Colors.white.withOpacity(0.6),
+                              fontSize: width * 0.06,
+                            ),
+                          );
+                        }
+                        if (value is SuccessDetailsMoviesState) {
+                          return ListView.builder(
+                            itemCount: value.movieEntity.length,
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) {
+                              final movie = value.movieEntity[index];
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: AspectRatio(
+                                  aspectRatio: 0.5,
+                                  child: MovieCard(
+                                    ratingMovie: movie.voteAverage.toDouble(),
+                                    nameMovie: movie.title,
+                                    pathImage: movie.posterPath,
+                                    onTap: () {
+                                      CustomNavigator.pushSlidesTransition(
+                                        context,
+                                        DetailsMovie(
+                                          imagePoster: movie.posterPath,
+                                          imageBackgroud: movie.backdropPath,
+                                          nameMovie: movie.title,
+                                          rating: movie.voteAverage.toDouble(),
+                                          votes: movie.voteCount,
+                                          description: movie.overview,
+                                          detaisMoviesStore: getIt<DetaisMoviesStore>(),
+                                          movieId: movie.movieID,
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
                               );
                             },
                           );

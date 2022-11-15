@@ -1,5 +1,3 @@
-import 'package:dartz/dartz.dart';
-
 import '../repository/movies_repository.dart';
 import '../types/type_movies.dart';
 

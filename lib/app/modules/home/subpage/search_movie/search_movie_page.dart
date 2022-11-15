@@ -161,6 +161,7 @@ class _SearchMoviePageState extends State<SearchMoviePage> {
                                 CustomNavigator.pushSlidesTransition(
                                   context,
                                   DetailsMovie(
+                                    imagePoster: movie.posterPath,
                                     imageBackgroud: movie.backdropPath,
                                     nameMovie: movie.title,
                                     rating: movie.voteAverage.toDouble(),
