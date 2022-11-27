@@ -8,11 +8,8 @@ class ImagePoster extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Container(
-      height: height * 0.30,
-      width: width * 0.45,
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(width * 0.05)),
@@ -23,10 +20,10 @@ class ImagePoster extends StatelessWidget {
         fit: BoxFit.fill,
         errorBuilder: (context, error, stackTrace) {
           return const Center(
-              child: Text(
-            'Image not found',
-            style: TextStyle(color: Colors.white),
-          ));
+            child: Icon(
+              Icons.broken_image_outlined,
+            ),
+          );
         },
         loadingBuilder: (_, widget, image) {
           if (image == null) {
