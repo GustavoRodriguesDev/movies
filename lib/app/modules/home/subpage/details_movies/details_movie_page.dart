@@ -5,10 +5,9 @@ import 'package:movies/app/modules/home/subpage/details_movies/store/state/state
 import '../../../../core/constants/movies_api.dart';
 import '../../../../core/widgets/card/cast_card.dart';
 import '../../../../core/widgets/card/movie_card.dart';
-import '../../../../core/widgets/navigator/custom_navigator.dart';
+import '../../../../core/widgets/componentes/image_poster.dart';
+import '../../../../core/widgets/dialgo/details_dialog.dart';
 import '../../../../core/widgets/shimmer/cast_card_shimmer.dart';
-
-import '../../../../get_it.dart';
 import 'store/details_movies_store.dart';
 import 'widget/rating_movie.dart';
 
@@ -195,9 +194,21 @@ class _DetailsMovieState extends State<DetailsMovie> {
                               return CastCard(
                                 castImage: cast.profilePath,
                                 castName: cast.originalName,
-                                onTap: () {
-                                  //TODO: implementar navegação para tela dos atores
-                                },
+                                onTap: cast.profilePath.isEmpty
+                                    ? null
+                                    : () {
+                                        showDialog(
+                                          barrierColor: Colors.transparent,
+                                          context: context,
+                                          builder: (context) {
+                                            return Container(
+                                              margin: const EdgeInsets.symmetric(horizontal: 20),
+                                              alignment: Alignment.center,
+                                              child: ImagePoster(pathImage: cast.profilePath),
+                                            );
+                                          },
+                                        );
+                                      },
                               );
                             },
                           );
@@ -250,30 +261,28 @@ class _DetailsMovieState extends State<DetailsMovie> {
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (context, index) {
                               final movie = value.movieEntity[index];
-                              return Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: AspectRatio(
-                                  aspectRatio: 0.5,
+                              return Container(
+                                height: height * 0.30,
+                                width: width * 0.45,
+                                margin: const EdgeInsets.symmetric(horizontal: 4),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    showDialog(
+                                      barrierColor: Colors.transparent,
+                                      context: context,
+                                      builder: (context) {
+                                        return DetailsDialog(
+                                          descripition: movie.overview,
+                                          pathImage: movie.posterPath,
+                                          title: movie.title,
+                                        );
+                                      },
+                                    );
+                                  },
                                   child: MovieCard(
-                                    ratingMovie: movie.voteAverage.toDouble(),
-                                    nameMovie: movie.title,
-                                    pathImage: movie.posterPath,
-                                    onTap: () {
-                                      CustomNavigator.pushSlidesTransition(
-                                        context,
-                                        DetailsMovie(
-                                          imagePoster: movie.posterPath,
-                                          imageBackgroud: movie.backdropPath,
-                                          nameMovie: movie.title,
-                                          rating: movie.voteAverage.toDouble(),
-                                          votes: movie.voteCount,
-                                          description: movie.overview,
-                                          detaisMoviesStore: getIt<DetaisMoviesStore>(),
-                                          movieId: movie.movieID,
-                                        ),
-                                      );
-                                    },
-                                  ),
+                                      pathImage: movie.posterPath,
+                                      nameMovie: movie.title,
+                                      ratingMovie: movie.voteAverage.toDouble()),
                                 ),
                               );
                             },
