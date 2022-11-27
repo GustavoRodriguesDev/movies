@@ -18,7 +18,7 @@ class _CastCardState extends State<CastCard> {
     // final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return GestureDetector(
-      onTap: () {},
+      onTap: widget.onTap,
       child: Column(
         children: [
           Container(
@@ -26,16 +26,24 @@ class _CastCardState extends State<CastCard> {
             width: width * 0.22,
             margin: const EdgeInsets.symmetric(horizontal: 6),
             clipBehavior: Clip.antiAlias,
-            decoration: const BoxDecoration(shape: BoxShape.circle),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: widget.castImage.isEmpty
+                  ? Border.all(
+                      color: Colors.white,
+                    )
+                  : null,
+            ),
             child: Image.network(
               ApiConstants.image + widget.castImage,
               fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) {
                 return const Center(
-                    child: Text(
-                  'Image not found',
-                  style: TextStyle(color: Colors.white),
-                ));
+                  child: Icon(
+                    Icons.broken_image_outlined,
+                    color: Colors.white,
+                  ),
+                );
               },
               loadingBuilder: (_, widget, image) {
                 if (image == null) {
