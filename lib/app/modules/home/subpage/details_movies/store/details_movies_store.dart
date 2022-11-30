@@ -1,4 +1,3 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:movies/app/core/error/errors.dart';
 import 'package:movies/app/modules/movies/domain/usecase/fetch_similar_movies_usecase.dart';

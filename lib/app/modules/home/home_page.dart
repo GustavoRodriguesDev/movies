@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-
 import '../../core/constants/movies_api.dart';
 import '../../core/widgets/appbar/custom_app_bar.dart';
 import '../../core/widgets/card/movie_card.dart';
 import '../../core/widgets/shimmer/movie_card_shimmer.dart';
 import '../../core/widgets/navigator/custom_navigator.dart';
 import '../../get_it.dart';
-
 import 'store/home_store.dart';
 import 'store/state/home_state.dart';
 import 'subpage/details_movies/details_movie_page.dart';
