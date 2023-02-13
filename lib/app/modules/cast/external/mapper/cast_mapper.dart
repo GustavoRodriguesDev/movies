@@ -12,7 +12,6 @@ class CastMapper {
                 creditId: cast['credit_id'],
                 gender: cast['gender'],
                 id: cast['id'],
-                knownForDepartment: cast['known_for_department'],
                 name: cast['name'],
                 order: cast['order'],
                 originalName: cast['original_name'],

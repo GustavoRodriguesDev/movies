@@ -49,7 +49,7 @@ class MovieCard extends StatelessWidget {
                   builder: (context, constraints) {
                     return StarRating(
                       rating: ratingMovie,
-                      width: width * 0.306,
+                      
                     );
                   },
                 )

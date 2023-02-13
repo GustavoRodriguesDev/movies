@@ -19,18 +19,26 @@ void main() {
     datasource = CastDatasource(http);
   });
 
-  test('Deve retornar um ListCastEntity quando o metodo for chamado getAllActores for chamado', () async {
-    when(() => http.get(any())).thenAnswer((_) async => ResponseHttpService(responseMock));
+  test(
+      'Deve retornar um ListCastEntity quando o metodo for chamado getAllActores for chamado',
+      () async {
+    when(() => http.get(any()))
+        .thenAnswer((_) async => ResponseHttpService(responseMock));
     final response = await datasource.getAllActores(1);
     expect(response, isA<List<CastEntity>>());
   });
-  test('Deve retornar uma Failure quando o metodo for chamado getAllActores for chamado', () async {
+  test(
+      'Deve retornar uma Failure quando o metodo for chamado getAllActores for chamado',
+      () async {
     when(() => http.get(any())).thenThrow(ServiceError(message: ''));
     final response = datasource.getAllActores(1);
     expect(response, throwsA(isA<Failure>()));
   });
-  test('Deve retornar um CastMapperError quando o metodo for chamado getAllActores for chamado', () {
-    when(() => http.get(any())).thenAnswer((_) async => ResponseHttpService(responseErrorMock));
+  test(
+      'Deve retornar um CastMapperError quando o metodo for chamado getAllActores for chamado',
+      () {
+    when(() => http.get(any()))
+        .thenAnswer((_) async => ResponseHttpService(responseErrorMock));
     final response = datasource.getAllActores(1);
     expect(response, throwsA(isA<CastMapperError>()));
   });
@@ -42,7 +50,7 @@ final responseMock = {
     {
       "adult": false,
       "gender": 2,
-      "id": 8970,
+      "cast_id": 8970,
       "known_for_department": "Editing",
       "name": "Jim Clark",
       "original_name": "Jim Clark",
@@ -50,12 +58,15 @@ final responseMock = {
       "profile_path": "/sQ6hauV0xjvIOwMebG2tM9DJ6RF.jpg",
       "credit_id": "52fe4260c3a36847f80197b1",
       "department": "Editing",
-      "job": "Editor"
+      "job": "Editor",
+      "character": "Shuri",
+      "id": 1,
+      "order": 0,
     },
     {
       "adult": false,
       "gender": 1,
-      "id": 8971,
+      "cast_id": 8971,
       "known_for_department": "Production",
       "name": "Pat Golden",
       "original_name": "Pat Golden",
@@ -63,12 +74,15 @@ final responseMock = {
       "profile_path": "/83ZwBFc01QO4Y5qMnT6B6NPmg9C.jpg",
       "credit_id": "52fe4260c3a36847f80197c3",
       "department": "Production",
-      "job": "Casting"
+      "job": "Casting",
+      "character": "Shuri",
+      "id": 1,
+      "order": 0,
     },
     {
       "adult": false,
       "gender": 2,
-      "id": 8973,
+      "cast_id": 8973,
       "known_for_department": "Art",
       "name": "Steve Spence",
       "original_name": "Steve Spence",
@@ -76,12 +90,15 @@ final responseMock = {
       "profile_path": null,
       "credit_id": "52fe4260c3a36847f80197db",
       "department": "Art",
-      "job": "Art Direction"
+      "job": "Art Direction",
+      "character": "Shuri",
+      "id": 1,
+      "order": 0,
     },
     {
       "adult": false,
       "gender": 0,
-      "id": 8974,
+      "cast_id": 8974,
       "known_for_department": "Costume & Make-Up",
       "name": "Judy Moorcroft",
       "original_name": "Judy Moorcroft",
@@ -89,12 +106,15 @@ final responseMock = {
       "profile_path": null,
       "credit_id": "52fe4260c3a36847f80197e1",
       "department": "Costume & Make-Up",
-      "job": "Costume Design"
+      "job": "Costume Design",
+      "character": "Shuri",
+      "id": 1,
+      "order": 0,
     },
     {
       "adult": false,
       "gender": 2,
-      "id": 40796,
+      "cast_id": 40796,
       "known_for_department": "Camera",
       "name": "David Appleby",
       "original_name": "David Appleby",
@@ -102,12 +122,15 @@ final responseMock = {
       "profile_path": "/b8zskcykOOugn31axyHn5qB8hdn.jpg",
       "credit_id": "5c28b9580e0a26793036e2e0",
       "department": "Camera",
-      "job": "Still Photographer"
+      "job": "Still Photographer",
+      "character": "Shuri",
+      "id": 1,
+      "order": 0,
     },
     {
       "adult": false,
       "gender": 0,
-      "id": 2191776,
+      "cast_id": 2191776,
       "known_for_department": "Sound",
       "name": "Judy Freeman",
       "original_name": "Judy Freeman",
@@ -115,7 +138,10 @@ final responseMock = {
       "profile_path": null,
       "credit_id": "5c2628b6c3a3687300c2ee99",
       "department": "Crew",
-      "job": "Video Assist Operator"
+      "job": "Video Assist Operator",
+      "character": "Shuri",
+      "id": 1,
+      "order": 0,
     }
   ]
 };

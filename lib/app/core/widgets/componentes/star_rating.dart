@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 
 class StarRating extends StatefulWidget {
   final double rating;
-  final double width;
+
   const StarRating({
     Key? key,
     required this.rating,
-    required this.width,
   }) : super(key: key);
 
   @override
@@ -17,7 +16,6 @@ class _StarRatingState extends State<StarRating> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: widget.width,
       child: Stack(
         children: [
           Row(

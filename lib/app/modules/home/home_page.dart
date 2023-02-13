@@ -14,10 +14,10 @@ import 'subpage/search_movie/store/search_movie_store.dart';
 
 class HomePage extends StatefulWidget {
   final HomeStore homeStore;
-  const HomePage({
-    Key? key,
-    required this.homeStore,
-  }) : super(key: key);
+  final DetaisMoviesStore detaisMoviesStore;
+  const HomePage(
+      {Key? key, required this.homeStore, required this.detaisMoviesStore})
+      : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -25,15 +25,18 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   HomeStore get homeStore => widget.homeStore;
+  DetaisMoviesStore get detaisMoviesStore => widget.detaisMoviesStore;
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    print('did int');
 
     homeStore.fetchAllMovies();
   }
 
   @override
   Widget build(BuildContext context) {
+    print('Build');
     return Scaffold(
       appBar: CustomAppBar(onPressed: () {
         CustomNavigator.pushSlidesTransition(
@@ -47,6 +50,7 @@ class _HomePageState extends State<HomePage> {
           valueListenable: homeStore,
           builder: ((context, value, child) {
             if (value is LoadingHomeState) {
+              print('Estado de loading');
               return GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   childAspectRatio: 0.65,
@@ -63,9 +67,11 @@ class _HomePageState extends State<HomePage> {
               );
             }
             if (value is ErrorHomeState) {
+              print('Estado de error');
               return Text(value.error.message);
             }
             if (value is SuccesHomeState) {
+              print('Estado de sucesso');
               return GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   childAspectRatio: 0.52,
@@ -76,7 +82,10 @@ class _HomePageState extends State<HomePage> {
                 itemCount: value.listMovies.length,
                 itemBuilder: (context, index) {
                   final movie = value.listMovies[index];
-                  precacheImage(Image.network(ApiConstants.image + movie.backdropPath).image, context);
+                  precacheImage(
+                      Image.network(ApiConstants.image + movie.backdropPath)
+                          .image,
+                      context);
                   return MovieCard(
                     ratingMovie: movie.voteAverage.toDouble(),
                     nameMovie: movie.title,
@@ -91,7 +100,7 @@ class _HomePageState extends State<HomePage> {
                           rating: movie.voteAverage.toDouble(),
                           votes: movie.voteCount,
                           description: movie.overview,
-                          detaisMoviesStore: getIt<DetaisMoviesStore>(),
+                          detaisMoviesStore: detaisMoviesStore,
                           movieId: movie.movieID,
                         ),
                       );
