@@ -29,14 +29,12 @@ class _HomePageState extends State<HomePage> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    print('did int');
 
     homeStore.fetchAllMovies();
   }
 
   @override
   Widget build(BuildContext context) {
-    print('Build');
     return Scaffold(
       appBar: CustomAppBar(onPressed: () {
         CustomNavigator.pushSlidesTransition(
@@ -50,7 +48,6 @@ class _HomePageState extends State<HomePage> {
           valueListenable: homeStore,
           builder: ((context, value, child) {
             if (value is LoadingHomeState) {
-              print('Estado de loading');
               return GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   childAspectRatio: 0.65,
@@ -67,11 +64,9 @@ class _HomePageState extends State<HomePage> {
               );
             }
             if (value is ErrorHomeState) {
-              print('Estado de error');
               return Text(value.error.message);
             }
             if (value is SuccesHomeState) {
-              print('Estado de sucesso');
               return GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   childAspectRatio: 0.52,
