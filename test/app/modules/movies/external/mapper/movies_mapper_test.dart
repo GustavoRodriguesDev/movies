@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:movies/app/modules/movies/domain/entities/movie_entity.dart';
-import 'package:movies/app/modules/movies/external/mapper/movies_mapper.dart';
+import 'package:movies/app/modules/movies/core/model/movie_model.dart';
+import 'package:movies/app/modules/movies/repository/datasource/mapper/movies_mapper.dart';
 void main() {
   test('Deve retornar uma List<MovieEntity> quando o metodo for chamado', () async {
     final list = MoviesMapper.fromJson(json);

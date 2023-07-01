@@ -3,12 +3,12 @@ import 'package:mocktail/mocktail.dart';
 import 'package:movies/app/core/error/errors.dart';
 import 'package:movies/app/core/service/http_service/http_service.dart';
 import 'package:movies/app/core/service/http_service/response_http_service.dart';
-import 'package:movies/app/modules/movies/domain/dto/pagination_movie_dto.dart';
-import 'package:movies/app/modules/movies/domain/dto/paran_search_movie_dto.dart';
-import 'package:movies/app/modules/movies/domain/entities/movie_entity.dart';
-import 'package:movies/app/modules/movies/external/datasource/movies_datasource.dart';
-import 'package:movies/app/modules/movies/external/error/movie_mapper_error.dart';
-import 'package:movies/app/modules/movies/infra/datasource/movies_datasource.dart';
+import 'package:movies/app/modules/movies/core/dto/pagination_movie_dto.dart';
+import 'package:movies/app/modules/movies/core/dto/paran_search_movie_dto.dart';
+import 'package:movies/app/modules/movies/core/model/movie_model.dart';
+import 'package:movies/app/modules/movies/repository/datasource/movies_datasource.dart';
+import 'package:movies/app/modules/movies/core/error/movie_mapper_error.dart';
+import 'package:movies/app/modules/movies/repository/datasource/i_movies_datasource.dart';
 
 class HttpServiceMock extends Mock implements IHttpService {}
 

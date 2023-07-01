@@ -1,6 +1,6 @@
 import 'package:movies/app/core/error/errors.dart';
 import 'package:movies/app/modules/cast/core/model/cast_model.dart';
-import 'package:movies/app/modules/movies/domain/entities/movie_entity.dart';
+import 'package:movies/app/modules/movies/core/model/movie_model.dart';
 
 class DetailsMoviesState {}
 

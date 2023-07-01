@@ -1,12 +1,12 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:movies/app/core/error/errors.dart';
-import 'package:movies/app/modules/movies/domain/dto/pagination_movie_dto.dart';
-import 'package:movies/app/modules/movies/domain/dto/paran_search_movie_dto.dart';
-import 'package:movies/app/modules/movies/domain/entities/movie_entity.dart';
-import 'package:movies/app/modules/movies/domain/repository/movies_repository.dart';
-import 'package:movies/app/modules/movies/infra/datasource/movies_datasource.dart';
-import 'package:movies/app/modules/movies/infra/repository/moview_repository.dart';
+import 'package:movies/app/modules/movies/core/dto/pagination_movie_dto.dart';
+import 'package:movies/app/modules/movies/core/dto/paran_search_movie_dto.dart';
+import 'package:movies/app/modules/movies/core/model/movie_model.dart';
+import 'package:movies/app/modules/movies/repository/i_movies_repository.dart';
+import 'package:movies/app/modules/movies/repository/datasource/i_movies_datasource.dart';
+import 'package:movies/app/modules/movies/repository/moview_repository.dart';
 
 class MoviesDatasourceMock extends Mock implements IMoviesDatasource {}
 

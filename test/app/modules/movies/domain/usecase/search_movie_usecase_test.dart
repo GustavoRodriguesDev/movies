@@ -2,9 +2,9 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:movies/app/core/error/errors.dart';
-import 'package:movies/app/modules/movies/domain/dto/paran_search_movie_dto.dart';
-import 'package:movies/app/modules/movies/domain/entities/movie_entity.dart';
-import 'package:movies/app/modules/movies/domain/repository/movies_repository.dart';
+import 'package:movies/app/modules/movies/core/dto/paran_search_movie_dto.dart';
+import 'package:movies/app/modules/movies/core/model/movie_model.dart';
+import 'package:movies/app/modules/movies/repository/i_movies_repository.dart';
 import 'package:movies/app/modules/movies/domain/usecase/search_movie.dart';
 
 class MoviesRepositoryMock extends Mock implements IMoviesRepository {}

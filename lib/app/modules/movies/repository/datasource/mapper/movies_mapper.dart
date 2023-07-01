@@ -1,5 +1,5 @@
-import '../../domain/entities/movie_entity.dart';
-import '../error/movie_mapper_error.dart';
+import '../../../core/model/movie_model.dart';
+import '../../../core/error/movie_mapper_error.dart';
 
 class MoviesMapper {
   static List<MovieEntity> fromJson(List<dynamic> movies) {

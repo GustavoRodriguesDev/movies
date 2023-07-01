@@ -3,16 +3,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:movies/app/modules/search_movie/store/state/search_state.dart';
 
-import '../../movies/domain/dto/paran_search_movie_dto.dart';
-import '../../movies/domain/usecase/search_movie.dart';
+import '../../movies/core/dto/paran_search_movie_dto.dart';
+import '../../movies/repository/i_movies_repository.dart';
 
 class SearchMovieStore extends ValueNotifier<SearchState> {
-  final ISearchMovieUsecase _searchMovieUsecase;
-  SearchMovieStore(this._searchMovieUsecase) : super(InitSearchState());
+  final IMoviesRepository _moviesRepository;
+  SearchMovieStore(this._moviesRepository) : super(InitSearchState());
 
   Future<void> searchMovie(String movie) async {
     value = LoadingSearchState();
-    final result = await _searchMovieUsecase(ParanSearchMovieDto(searchParan: movie));
+    final result =
+        await _moviesRepository.searchMovies(ParanSearchMovieDto(searchParan: movie));
 
     result.fold(
       (l) => value = ErrorSearchState(l),

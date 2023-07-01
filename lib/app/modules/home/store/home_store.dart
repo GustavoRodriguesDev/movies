@@ -1,16 +1,17 @@
 import 'package:flutter/cupertino.dart';
 
-import '../../movies/domain/dto/pagination_movie_dto.dart';
-import '../../movies/domain/usecase/fetch_all_movies_usecase.dart';
+import '../../movies/core/dto/pagination_movie_dto.dart';
+import '../../movies/repository/i_movies_repository.dart';
 import 'state/home_state.dart';
 
 class HomeStore extends ValueNotifier<HomeState> {
-  final IFetchAllMoviesUsecase _usecase;
-  HomeStore(this._usecase) : super(EmpityHomeState());
+  final IMoviesRepository _moviesRepository;
+  HomeStore(this._moviesRepository) : super(EmpityHomeState());
 
   Future<void> fetchAllMovies() async {
     value = LoadingHomeState();
-    final movies = await _usecase(const PaginationMovieDto());
+    final movies =
+        await _moviesRepository.getAllMovies(const PaginationMovieDto());
 
     movies.fold(
       (l) => value = ErrorHomeState(l),

@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
-import '../../../../core/error/errors.dart';
-import '../../domain/dto/pagination_movie_dto.dart';
-import '../../domain/dto/paran_search_movie_dto.dart';
-import '../../domain/repository/movies_repository.dart';
-import '../../domain/types/type_movies.dart';
-import '../datasource/movies_datasource.dart';
+import '../../../core/error/errors.dart';
+import '../core/dto/pagination_movie_dto.dart';
+import '../core/dto/paran_search_movie_dto.dart';
+import 'i_movies_repository.dart';
+import '../core/types/type_movies.dart';
+import 'datasource/i_movies_datasource.dart';
 
 class MoviesRepository implements IMoviesRepository {
   final IMoviesDatasource datasource;
