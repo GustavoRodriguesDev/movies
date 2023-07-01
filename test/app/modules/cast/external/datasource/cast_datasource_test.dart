@@ -22,8 +22,10 @@ void main() {
   test(
       'Deve retornar um ListCastEntity quando o metodo for chamado getAllActores for chamado',
       () async {
-    when(() => http.get(any()))
-        .thenAnswer((_) async => ResponseHttpService(responseMock));
+    when(() => http.get(any())).thenAnswer((_) async => ResponseHttpService(
+          data: responseMock,
+          statusCode: 200,
+        ));
     final response = await datasource.getAllActores(1);
     expect(response, isA<List<CastEntity>>());
   });
@@ -37,8 +39,10 @@ void main() {
   test(
       'Deve retornar um CastMapperError quando o metodo for chamado getAllActores for chamado',
       () {
-    when(() => http.get(any()))
-        .thenAnswer((_) async => ResponseHttpService(responseErrorMock));
+    when(() => http.get(any())).thenAnswer((_) async => ResponseHttpService(
+          data: responseErrorMock,
+          statusCode: 200,
+        ));
     final response = datasource.getAllActores(1);
     expect(response, throwsA(isA<CastMapperError>()));
   });

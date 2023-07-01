@@ -22,24 +22,39 @@ void main() {
   PaginationMovieDto page = const PaginationMovieDto();
   ParanSearchMovieDto paran = const ParanSearchMovieDto();
   group('testes metodo getAllMovies', () {
-    test('Deve retornar uma lista de MovieEntity quando o metodo getAllMovies for chamado ', () async {
-      when(() => http.get(any(), queryParameters: any(named: 'queryParameters')))
-          .thenAnswer((_) async => ResponseHttpService(json));
+    test(
+        'Deve retornar uma lista de MovieEntity quando o metodo getAllMovies for chamado ',
+        () async {
+      when(() =>
+              http.get(any(), queryParameters: any(named: 'queryParameters')))
+          .thenAnswer((_) async => ResponseHttpService(
+                data: json,
+                statusCode: 200,
+              ));
 
       final response = await datasource.getAllMovies(page);
 
       expect(response, isA<List<MovieEntity>>());
     });
-    test('Deve retornar uma Failure quando o metodo getAllMovies for chamado ', () {
-      when(() => http.get(any(), queryParameters: any(named: 'queryParameters'))).thenThrow(ServiceError(message: ''));
+    test('Deve retornar uma Failure quando o metodo getAllMovies for chamado ',
+        () {
+      when(() =>
+              http.get(any(), queryParameters: any(named: 'queryParameters')))
+          .thenThrow(ServiceError(message: ''));
 
       final response = datasource.getAllMovies(page);
 
       expect(response, throwsA(isA<Failure>()));
     });
-    test('Deve retornar uma MovieMapperError quando o metodo getAllMovies for chamado ', () {
-      when(() => http.get(any(), queryParameters: any(named: 'queryParameters')))
-          .thenAnswer((_) async => ResponseHttpService(jsonError));
+    test(
+        'Deve retornar uma MovieMapperError quando o metodo getAllMovies for chamado ',
+        () {
+      when(() =>
+              http.get(any(), queryParameters: any(named: 'queryParameters')))
+          .thenAnswer((_) async => ResponseHttpService(
+                data: jsonError,
+                statusCode: 400,
+              ));
 
       final response = datasource.getAllMovies(page);
 
@@ -48,24 +63,39 @@ void main() {
   });
 
   group('testes metodo searchMovies', () {
-    test('Deve retornar uma lista de MovieEntity quando o metodo searchMovies for chamado ', () async {
-      when(() => http.get(any(), queryParameters: any(named: 'queryParameters')))
-          .thenAnswer((_) async => ResponseHttpService(json));
+    test(
+        'Deve retornar uma lista de MovieEntity quando o metodo searchMovies for chamado ',
+        () async {
+      when(() =>
+              http.get(any(), queryParameters: any(named: 'queryParameters')))
+          .thenAnswer((_) async => ResponseHttpService(
+                data: json,
+                statusCode: 400,
+              ));
 
       final response = await datasource.searchMovies(paran);
 
       expect(response, isA<List<MovieEntity>>());
     });
-    test('Deve retornar uma Failure quando o metodo searchMovies for chamado ', () {
-      when(() => http.get(any(), queryParameters: any(named: 'queryParameters'))).thenThrow(ServiceError(message: ''));
+    test('Deve retornar uma Failure quando o metodo searchMovies for chamado ',
+        () {
+      when(() =>
+              http.get(any(), queryParameters: any(named: 'queryParameters')))
+          .thenThrow(ServiceError(message: ''));
 
       final response = datasource.searchMovies(paran);
 
       expect(response, throwsA(isA<Failure>()));
     });
-    test('Deve retornar uma MovieMapperError quando o metodo searchMovies for chamado ', () {
-      when(() => http.get(any(), queryParameters: any(named: 'queryParameters')))
-          .thenAnswer((_) async => ResponseHttpService(jsonError));
+    test(
+        'Deve retornar uma MovieMapperError quando o metodo searchMovies for chamado ',
+        () {
+      when(() =>
+              http.get(any(), queryParameters: any(named: 'queryParameters')))
+          .thenAnswer((_) async => ResponseHttpService(
+                data: jsonError,
+                statusCode: 400,
+              ));
 
       final response = datasource.getAllMovies(page);
 
@@ -74,22 +104,34 @@ void main() {
   });
 
   group('testes metodo getSimilarMovies', () {
-    test('Deve retornar uma lista de MovieEntity quando o metodo getSimilarMovies for chamado ', () async {
-      when(() => http.get(any())).thenAnswer((_) async => ResponseHttpService(json));
+    test(
+        'Deve retornar uma lista de MovieEntity quando o metodo getSimilarMovies for chamado ',
+        () async {
+      when(() => http.get(any())).thenAnswer((_) async => ResponseHttpService(
+            data: json,
+            statusCode: 400,
+          ));
 
       final response = await datasource.getSimilarMovies(0);
 
       expect(response, isA<List<MovieEntity>>());
     });
-    test('Deve retornar uma Failure quando o metodo getSimilarMovies for chamado ', () {
+    test(
+        'Deve retornar uma Failure quando o metodo getSimilarMovies for chamado ',
+        () {
       when(() => http.get(any())).thenThrow(ServiceError(message: ''));
 
       final response = datasource.getSimilarMovies(0);
 
       expect(response, throwsA(isA<Failure>()));
     });
-    test('Deve retornar uma MovieMapperError quando o metodo getSimilarMovies for chamado ', () {
-      when(() => http.get(any())).thenAnswer((_) async => ResponseHttpService(jsonError));
+    test(
+        'Deve retornar uma MovieMapperError quando o metodo getSimilarMovies for chamado ',
+        () {
+      when(() => http.get(any())).thenAnswer((_) async => ResponseHttpService(
+            data: jsonError,
+            statusCode: 400,
+          ));
 
       final response = datasource.getSimilarMovies(0);
 

@@ -1,5 +1,9 @@
 class ResponseHttpService {
   final dynamic data;
+  final int statusCode;
 
-  ResponseHttpService(this.data);
+  ResponseHttpService({
+    required this.data,
+    required this.statusCode,
+  });
 }
