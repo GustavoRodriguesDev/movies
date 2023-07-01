@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movies/app/get_it.dart';
 import 'modules/home/home_page.dart';
 import 'modules/home/store/home_store.dart';
-import 'modules/home/subpage/details_movies/store/details_movies_store.dart';
+import 'modules/details_movies/store/details_movies_store.dart';
 
 class AppWidget extends StatefulWidget {
   const AppWidget({Key? key}) : super(key: key);

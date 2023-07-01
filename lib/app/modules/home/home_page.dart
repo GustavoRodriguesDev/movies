@@ -7,10 +7,10 @@ import '../../core/widgets/navigator/custom_navigator.dart';
 import '../../get_it.dart';
 import 'store/home_store.dart';
 import 'store/state/home_state.dart';
-import 'subpage/details_movies/details_movie_page.dart';
-import 'subpage/details_movies/store/details_movies_store.dart';
-import 'subpage/search_movie/search_movie_page.dart';
-import 'subpage/search_movie/store/search_movie_store.dart';
+import '../details_movies/details_movie_page.dart';
+import '../details_movies/store/details_movies_store.dart';
+import '../search_movie/search_movie_page.dart';
+import '../search_movie/store/search_movie_store.dart';
 
 class HomePage extends StatefulWidget {
   final HomeStore homeStore;

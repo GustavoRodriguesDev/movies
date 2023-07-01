@@ -3,10 +3,10 @@ import 'package:mocktail/mocktail.dart';
 import 'package:movies/app/core/error/errors.dart';
 import 'package:movies/app/core/service/http_service/http_service.dart';
 import 'package:movies/app/core/service/http_service/response_http_service.dart';
-import 'package:movies/app/modules/cast/domain/entity/cast_entity.dart';
-import 'package:movies/app/modules/cast/external/datasource/cast_datasource.dart';
-import 'package:movies/app/modules/cast/external/error/cast_mapper_error.dart';
-import 'package:movies/app/modules/cast/infra/datasource/cast_datasource.dart';
+import 'package:movies/app/modules/cast/core/model/cast_model.dart';
+import 'package:movies/app/modules/cast/repository/datasource/cast_datasource.dart';
+import 'package:movies/app/modules/cast/core/error/cast_mapper_error.dart';
+import 'package:movies/app/modules/cast/repository/datasource/i_cast_datasource.dart';
 
 class HttpServiceMock extends Mock implements IHttpService {}
 

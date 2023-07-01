@@ -1,16 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:movies/app/core/error/errors.dart';
 import 'package:movies/app/modules/movies/domain/usecase/fetch_similar_movies_usecase.dart';
-import '../../../../cast/domain/entity/cast_entity.dart';
-import '../../../../cast/domain/usecase/fetch_all_actores_movie.dart';
-import '../../../../movies/domain/entities/movie_entity.dart';
+
+import '../../cast/core/model/cast_model.dart';
+import '../../cast/repository/i_cast_repository.dart';
+import '../../movies/domain/entities/movie_entity.dart';
 import 'state/state_details_movies.dart';
 
 class DetaisMoviesStore extends ValueNotifier<DetailsMoviesState> {
-  final IFetchAllActoresMovies fetchAllActoresMovies;
+  final ICastRepository actoresMovies;
   final IFetchSimilarMoviesUsecase fetchSimilarMoviesUsecase;
   DetaisMoviesStore({
-    required this.fetchAllActoresMovies,
+    required this.actoresMovies,
     required this.fetchSimilarMoviesUsecase,
   }) : super(EmpityDetailsMoviesState());
 
@@ -26,7 +27,7 @@ class DetaisMoviesStore extends ValueNotifier<DetailsMoviesState> {
   }
 
   Future<List<CastEntity>> _fetchAllActors(int movieId) async {
-    final response = await fetchAllActoresMovies(movieId);
+    final response = await actoresMovies.getAllActores(movieId);
 
     return response.fold(
       (error) {

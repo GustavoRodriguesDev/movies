@@ -1,5 +1,5 @@
-import 'package:movies/app/modules/cast/domain/entity/cast_entity.dart';
-import 'package:movies/app/modules/cast/external/error/cast_mapper_error.dart';
+import 'package:movies/app/modules/cast/core/model/cast_model.dart';
+import 'package:movies/app/modules/cast/core/error/cast_mapper_error.dart';
 
 class CastMapper {
   static List<CastEntity> fromMap(List casts) {

@@ -1,16 +1,16 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:movies/app/modules/home/subpage/search_movie/store/search_movie_store.dart';
+import 'package:movies/app/modules/search_movie/store/search_movie_store.dart';
 import 'package:movies/app/modules/movies/domain/usecase/fetch_similar_movies_usecase.dart';
+
 import 'core/constants/movies_api.dart';
 import 'core/service/http_service/http_service.dart';
-import 'modules/cast/domain/repository/cast_repository.dart';
-import 'modules/cast/domain/usecase/fetch_all_actores_movie.dart';
-import 'modules/cast/external/datasource/cast_datasource.dart';
-import 'modules/cast/infra/datasource/cast_datasource.dart';
-import 'modules/cast/infra/repository/cast_repository.dart';
+import 'modules/cast/repository/cast_repository.dart';
+import 'modules/cast/repository/datasource/cast_datasource.dart';
+import 'modules/cast/repository/datasource/i_cast_datasource.dart';
+import 'modules/cast/repository/i_cast_repository.dart';
 import 'modules/home/store/home_store.dart';
-import 'modules/home/subpage/details_movies/store/details_movies_store.dart';
+import 'modules/details_movies/store/details_movies_store.dart';
 import 'modules/movies/domain/repository/movies_repository.dart';
 import 'modules/movies/domain/usecase/fetch_all_movies_usecase.dart';
 import 'modules/movies/domain/usecase/search_movie.dart';
@@ -37,37 +37,44 @@ void setup() {
   //DATASOUCE
   //
   //movie module
-  getIt.registerSingleton<IMoviesDatasource>(MoviesDatasource(getIt.get<IHttpService>()));
+  getIt.registerSingleton<IMoviesDatasource>(
+      MoviesDatasource(getIt.get<IHttpService>()));
 
   //cast module
-  getIt.registerSingleton<ICastDatasource>(CastDatasource(getIt.get<IHttpService>()));
+  getIt.registerSingleton<ICastDatasource>(
+      CastDatasource(getIt.get<IHttpService>()));
 
   //INFRA
   //
   //movie module
-  getIt.registerSingleton<IMoviesRepository>(MoviesRepository(getIt.get<IMoviesDatasource>()));
+  getIt.registerSingleton<IMoviesRepository>(
+      MoviesRepository(getIt.get<IMoviesDatasource>()));
 
   //cast module
-  getIt.registerSingleton<ICastRepository>(CastRepository(getIt.get<ICastDatasource>()));
+  getIt.registerSingleton<ICastRepository>(
+      CastRepository(getIt.get<ICastDatasource>()));
 
   //USECASE
   //
   //movie module
-  getIt.registerSingleton<IFetchAllMoviesUsecase>(FetchAllMoviesUsecase(getIt.get<IMoviesRepository>()));
-  getIt.registerSingleton<ISearchMovieUsecase>(SearchMovieUsecase(getIt.get<IMoviesRepository>()));
-  getIt.registerSingleton<IFetchSimilarMoviesUsecase>(FetchSimilarMoviesUsecase(getIt.get<IMoviesRepository>()));
-  //cast module
-  getIt.registerSingleton<IFetchAllActoresMovies>(FetchAllActoresMovies(getIt.get<ICastRepository>()));
+  getIt.registerSingleton<IFetchAllMoviesUsecase>(
+      FetchAllMoviesUsecase(getIt.get<IMoviesRepository>()));
+  getIt.registerSingleton<ISearchMovieUsecase>(
+      SearchMovieUsecase(getIt.get<IMoviesRepository>()));
+  getIt.registerSingleton<IFetchSimilarMoviesUsecase>(
+      FetchSimilarMoviesUsecase(getIt.get<IMoviesRepository>()));
 
   //STORE
   //
   //home module
-  getIt.registerSingleton<HomeStore>(HomeStore(getIt.get<IFetchAllMoviesUsecase>()));
+  getIt.registerSingleton<HomeStore>(
+      HomeStore(getIt.get<IFetchAllMoviesUsecase>()));
   getIt.registerSingleton<DetaisMoviesStore>(
     DetaisMoviesStore(
-      fetchAllActoresMovies: getIt.get<IFetchAllActoresMovies>(),
+      actoresMovies: getIt.get<ICastRepository>(),
       fetchSimilarMoviesUsecase: getIt.get<IFetchSimilarMoviesUsecase>(),
     ),
   );
-  getIt.registerSingleton<SearchMovieStore>(SearchMovieStore(getIt.get<ISearchMovieUsecase>()));
+  getIt.registerSingleton<SearchMovieStore>(
+      SearchMovieStore(getIt.get<ISearchMovieUsecase>()));
 }

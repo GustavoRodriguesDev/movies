@@ -2,7 +2,6 @@ class CastEntity {
   final bool adult;
   final int gender;
   final int id;
-  
   final String name;
   final String originalName;
   final double popularity;
@@ -16,7 +15,6 @@ class CastEntity {
     this.adult = false,
     this.gender = 0,
     this.id = 0,
-   
     this.name = '',
     this.originalName = '',
     this.popularity = 0,
