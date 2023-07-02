@@ -1,34 +1,23 @@
 // ignore_for_file: must_call_super
 
 import 'package:flutter/cupertino.dart';
-import 'package:movies/app/modules/search_movie/store/state/search_state.dart';
+import 'package:movies/app/modules/movies/interactor/state/movie_state.dart';
 
-import '../../movies/core/dto/paran_search_movie_dto.dart';
-import '../../movies/repository/i_movies_repository.dart';
+import '../../movies/interactor/dto/paran_search_movie_dto.dart';
+import '../../movies/interactor/service/i_movies_repository.dart';
 
-class SearchMovieStore extends ValueNotifier<SearchState> {
+class SearchMovieStore extends ValueNotifier<MovieState> {
   final IMoviesRepository _moviesRepository;
-  SearchMovieStore(this._moviesRepository) : super(InitSearchState());
+  SearchMovieStore(this._moviesRepository) : super(EmptyMovieState());
 
   Future<void> searchMovie(String movie) async {
-    value = LoadingSearchState();
-    final result =
-        await _moviesRepository.searchMovies(ParanSearchMovieDto(searchParan: movie));
-
-    result.fold(
-      (l) => value = ErrorSearchState(l),
-      (r) {
-        if (r.isEmpty) {
-          value = EmptySearchState();
-        } else {
-          value = SuccessSearchState(listMovies: r);
-        }
-      },
-    );
+    value = LoadingMovieState();
+    value = await _moviesRepository
+        .searchMovies(ParanSearchMovieDto(searchParan: movie));
   }
 
   @override
   void dispose() {
-    value = InitSearchState();
+    value = EmptyMovieState();
   }
 }

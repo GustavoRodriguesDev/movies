@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:movies/app/modules/movies/interactor/state/movie_state.dart';
+
 import '../../core/constants/movies_api.dart';
 import '../../core/widgets/appbar/custom_app_bar.dart';
 import '../../core/widgets/card/movie_card.dart';
-import '../../core/widgets/shimmer/movie_card_shimmer.dart';
 import '../../core/widgets/navigator/custom_navigator.dart';
+import '../../core/widgets/shimmer/movie_card_shimmer.dart';
 import '../../get_it.dart';
-import 'store/home_store.dart';
-import 'store/state/home_state.dart';
 import '../details_movies/details_movie_page.dart';
-import '../details_movies/store/details_movies_store.dart';
 import '../search_movie/search_movie_page.dart';
 import '../search_movie/store/search_movie_store.dart';
+import 'store/home_store.dart';
 
 class HomePage extends StatefulWidget {
   final HomeStore homeStore;
-  final DetaisMoviesStore detaisMoviesStore;
-  const HomePage(
-      {Key? key, required this.homeStore, required this.detaisMoviesStore})
-      : super(key: key);
+
+  const HomePage({
+    Key? key,
+    required this.homeStore,
+  }) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -25,7 +26,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   HomeStore get homeStore => widget.homeStore;
-  DetaisMoviesStore get detaisMoviesStore => widget.detaisMoviesStore;
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -44,10 +45,10 @@ class _HomePageState extends State<HomePage> {
       }),
       body: Padding(
         padding: const EdgeInsets.only(left: 14, right: 14, top: 6),
-        child: ValueListenableBuilder<HomeState>(
+        child: ValueListenableBuilder<MovieState>(
           valueListenable: homeStore,
           builder: ((context, value, child) {
-            if (value is LoadingHomeState) {
+            if (value is LoadingMovieState) {
               return GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   childAspectRatio: 0.65,
@@ -63,10 +64,10 @@ class _HomePageState extends State<HomePage> {
                 },
               );
             }
-            if (value is ErrorHomeState) {
+            if (value is ErrorMovieState) {
               return Text(value.error.message);
             }
-            if (value is SuccesHomeState) {
+            if (value is SuccesMovieState) {
               return GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   childAspectRatio: 0.52,
@@ -95,7 +96,6 @@ class _HomePageState extends State<HomePage> {
                           rating: movie.voteAverage.toDouble(),
                           votes: movie.voteCount,
                           description: movie.overview,
-                          detaisMoviesStore: detaisMoviesStore,
                           movieId: movie.movieID,
                         ),
                       );

@@ -4,16 +4,13 @@ import 'package:movies/app/modules/search_movie/store/search_movie_store.dart';
 
 import 'core/constants/movies_api.dart';
 import 'core/service/http_service/http_service.dart';
-import 'modules/cast/repository/cast_repository.dart';
-import 'modules/cast/repository/datasource/cast_datasource.dart';
-import 'modules/cast/repository/datasource/i_cast_datasource.dart';
-import 'modules/cast/repository/i_cast_repository.dart';
-import 'modules/details_movies/store/details_movies_store.dart';
+import 'modules/cast/data/service/cast_repository.dart';
+import 'modules/cast/interactor/service/i_cast_repository.dart';
+import 'modules/details_movies/widget/cast_movie/cast_movie_store/cast_movie_store.dart';
+import 'modules/details_movies/widget/similar_movies/store/similar_movie_store.dart';
 import 'modules/home/store/home_store.dart';
-import 'modules/movies/repository/datasource/i_movies_datasource.dart';
-import 'modules/movies/repository/datasource/movies_datasource.dart';
-import 'modules/movies/repository/i_movies_repository.dart';
-import 'modules/movies/repository/moview_repository.dart';
+import 'modules/movies/data/service/moview_repository.dart';
+import 'modules/movies/interactor/service/i_movies_repository.dart';
 
 final getIt = GetIt.instance;
 
@@ -31,25 +28,16 @@ void setup() {
     ),
   );
   getIt.registerSingleton<IHttpService>(HttpService(getIt.get<Dio>()));
-  //DATASOUCE
-  //
-  //movie module
-  getIt.registerSingleton<IMoviesDatasource>(
-      MoviesDatasource(getIt.get<IHttpService>()));
-
-  //cast module
-  getIt.registerSingleton<ICastDatasource>(
-      CastDatasource(getIt.get<IHttpService>()));
 
   //INFRA
   //
   //movie module
   getIt.registerSingleton<IMoviesRepository>(
-      MoviesRepository(getIt.get<IMoviesDatasource>()));
+      MoviesRepository(getIt.get<IHttpService>()));
 
   //cast module
   getIt.registerSingleton<ICastRepository>(
-      CastRepository(getIt.get<ICastDatasource>()));
+      CastRepository(getIt.get<IHttpService>()));
 
   //USECASE
   //
@@ -59,12 +47,16 @@ void setup() {
   //
   //home module
   getIt.registerSingleton<HomeStore>(HomeStore(getIt.get<IMoviesRepository>()));
-  getIt.registerSingleton<DetaisMoviesStore>(
-    DetaisMoviesStore(
-      actoresMovies: getIt.get<ICastRepository>(),
-      moviesRepository: getIt.get<IMoviesRepository>(),
+
+  getIt.registerSingleton<CastMovieStore>(
+    CastMovieStore(
+      getIt.get<ICastRepository>(),
     ),
   );
+
   getIt.registerSingleton<SearchMovieStore>(
       SearchMovieStore(getIt.get<IMoviesRepository>()));
+
+  getIt
+      .registerFactory(() => SimilarMovieStore(getIt.get<IMoviesRepository>()));
 }

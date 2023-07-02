@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:movies/app/core/widgets/shimmer/movie_card_shimmer.dart';
-import 'package:movies/app/core/widgets/shimmer/text_shimmer.dart';
-import 'package:movies/app/modules/details_movies/store/state/state_details_movies.dart';
+import 'package:movies/app/modules/details_movies/widget/similar_movies/similar_movies.dart';
+
 import '../../core/constants/movies_api.dart';
-import '../../core/widgets/card/cast_card.dart';
-import '../../core/widgets/card/movie_card.dart';
-import '../../core/widgets/componentes/image_poster.dart';
-import '../../core/widgets/dialgo/details_dialog.dart';
-import '../../core/widgets/shimmer/cast_card_shimmer.dart';
-import 'store/details_movies_store.dart';
+import 'widget/cast_movie/cast_movie_widget.dart';
 import 'widget/rating_movie.dart';
 
 class DetailsMovie extends StatefulWidget {
@@ -18,7 +12,7 @@ class DetailsMovie extends StatefulWidget {
   final double rating;
   final int votes;
   final String description;
-  final DetaisMoviesStore detaisMoviesStore;
+
   final int movieId;
   const DetailsMovie({
     Key? key,
@@ -27,7 +21,6 @@ class DetailsMovie extends StatefulWidget {
     required this.rating,
     required this.votes,
     required this.description,
-    required this.detaisMoviesStore,
     required this.movieId,
     required this.imagePoster,
   }) : super(key: key);
@@ -37,13 +30,6 @@ class DetailsMovie extends StatefulWidget {
 }
 
 class _DetailsMovieState extends State<DetailsMovie> {
-  DetaisMoviesStore get detaisMoviesStore => widget.detaisMoviesStore;
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    detaisMoviesStore.initalDetails(widget.movieId);
-  }
-
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -142,156 +128,12 @@ class _DetailsMovieState extends State<DetailsMovie> {
                     ),
                   ),
                   SizedBox(height: width * 0.04),
-                  Text(
-                    'Elenco',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: width * 0.06,
-                    ),
+                  CastMovieWidget(
+                    movieId: widget.movieId,
                   ),
-                  SizedBox(height: width * 0.04),
-                  SizedBox(
-                    height: width * 0.42,
-                    width: width,
-                    child: ValueListenableBuilder<DetailsMoviesState>(
-                      valueListenable: detaisMoviesStore,
-                      builder: (context, value, child) {
-                        if (value is LoadingDetailsMoviesState) {
-                          return ListView.builder(
-                            itemCount: 5,
-                            shrinkWrap: true,
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, index) {
-                              return Center(
-                                child: Column(
-                                  children: [
-                                    const CastCardShimmer(),
-                                    SizedBox(height: width * 0.02),
-                                    const TextShimmer(),
-                                  ],
-                                ),
-                              );
-                            },
-                          );
-                        }
-                        if (value is ErrorDetailsMoviesState) {
-                          return Text(
-                            'Elenco não encontrado',
-                            style: TextStyle(
-                              color: Colors.white.withOpacity(0.6),
-                              fontSize: width * 0.06,
-                            ),
-                          );
-                        }
-                        if (value is SuccessDetailsMoviesState) {
-                          return ListView.builder(
-                            itemCount: value.listCast.length,
-                            shrinkWrap: true,
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, index) {
-                              final cast = value.listCast[index];
-                              return CastCard(
-                                castImage: cast.profilePath,
-                                castName: cast.originalName,
-                                onTap: cast.profilePath.isEmpty
-                                    ? null
-                                    : () {
-                                        showDialog(
-                                          barrierColor: Colors.transparent,
-                                          context: context,
-                                          builder: (context) {
-                                            return Container(
-                                              margin: const EdgeInsets.symmetric(horizontal: 20),
-                                              alignment: Alignment.center,
-                                              child: ImagePoster(pathImage: cast.profilePath),
-                                            );
-                                          },
-                                        );
-                                      },
-                              );
-                            },
-                          );
-                        }
-                        return Container();
-                      },
-                    ),
-                  ),
-                  Text(
-                    'Filmes Similares',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: width * 0.06,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 350,
-                    width: width,
-                    child: ValueListenableBuilder(
-                      valueListenable: detaisMoviesStore,
-                      builder: (context, value, child) {
-                        if (value is LoadingDetailsMoviesState) {
-                          return ListView.builder(
-                            itemCount: 5,
-                            shrinkWrap: true,
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, index) {
-                              return Container(
-                                alignment: Alignment.center,
-                                padding: const EdgeInsets.all(6),
-                                child: const MovieCardShimmer(),
-                              );
-                            },
-                          );
-                        }
-                        if (value is ErrorDetailsMoviesState) {
-                          return Text(
-                            'Filmes não econtrados',
-                            style: TextStyle(
-                              color: Colors.white.withOpacity(0.6),
-                              fontSize: width * 0.06,
-                            ),
-                          );
-                        }
-                        if (value is SuccessDetailsMoviesState) {
-                          return ListView.builder(
-                            itemCount: value.movieEntity.length,
-                            shrinkWrap: true,
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, index) {
-                              final movie = value.movieEntity[index];
-                              return Container(
-                                height: height * 0.30,
-                                width: width * 0.45,
-                                margin: const EdgeInsets.symmetric(horizontal: 4),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    showDialog(
-                                      barrierColor: Colors.transparent,
-                                      context: context,
-                                      builder: (context) {
-                                        return DetailsDialog(
-                                          descripition: movie.overview,
-                                          pathImage: movie.posterPath,
-                                          title: movie.title,
-                                        );
-                                      },
-                                    );
-                                  },
-                                  child: MovieCard(
-                                      pathImage: movie.posterPath,
-                                      nameMovie: movie.title,
-                                      ratingMovie: movie.voteAverage.toDouble()),
-                                ),
-                              );
-                            },
-                          );
-                        }
-                        return Container();
-                      },
-                    ),
-                  ),
+                  SimilarMoviesWidget(
+                    movieId: widget.movieId,
+                  )
                 ],
               ),
             )

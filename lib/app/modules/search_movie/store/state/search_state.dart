@@ -1,13 +1,10 @@
-
-
-
 import '../../../../core/error/errors.dart';
-import '../../../movies/core/model/movie_model.dart';
+import '../../../movies/interactor/model/movie_model.dart';
 
 abstract class SearchState {}
 
 class SuccessSearchState implements SearchState {
-  final List<MovieEntity> listMovies;
+  final List<MovieModel> listMovies;
 
   SuccessSearchState({required this.listMovies});
 }
