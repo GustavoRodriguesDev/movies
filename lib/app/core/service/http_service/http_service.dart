@@ -6,7 +6,7 @@ import '../../error/errors.dart';
 abstract class IHttpService {
   Future<ResponseHttpService> get(
     String url, {
-    Map<String, dynamic>? queryParameters,
+    Map<String, dynamic> queryParameters = const {},
   });
 }
 
@@ -15,8 +15,10 @@ class HttpService implements IHttpService {
 
   HttpService(this.dio);
   @override
-  Future<ResponseHttpService> get(String url,
-      {Map<String, dynamic>? queryParameters}) async {
+  Future<ResponseHttpService> get(
+    String url, {
+    Map<String, dynamic> queryParameters = const {},
+  }) async {
     try {
       final response = await dio.get(url, queryParameters: queryParameters);
       return ResponseHttpService(
