@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies/app/modules/details_movies/details_movie_page.dart';
-import 'package:movies/app/modules/movies/interactor/state/movie_state.dart';
+import 'package:movies/app/core/modules/movies/interactor/state/movie_state.dart';
 
 import '../../core/constants/movies_api.dart';
 import '../../core/widgets/button/icon_button_custon.dart';

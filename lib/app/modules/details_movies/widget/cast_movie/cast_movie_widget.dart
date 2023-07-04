@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movies/app/modules/cast/interactor/state/cast_state.dart';
+import 'package:movies/app/core/modules/cast/interactor/state/cast_state.dart';
 import 'package:movies/app/modules/details_movies/widget/cast_movie/cast_movie_store/cast_movie_store.dart';
 
 import '../../../../core/widgets/card/cast_card.dart';

@@ -1,5 +1,5 @@
 import '../../../../core/error/errors.dart';
-import '../../../movies/interactor/model/movie_model.dart';
+import '../../../../core/modules/movies/interactor/model/movie_model.dart';
 
 abstract class SearchState {}
 

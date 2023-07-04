@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:movies/app/modules/movies/data/adpter/movies_mapper.dart';
-import 'package:movies/app/modules/movies/interactor/model/movie_model.dart';
+import 'package:movies/app/core/modules/movies/data/adpter/movies_mapper.dart';
+import 'package:movies/app/core/modules/movies/interactor/model/movie_model.dart';
 
 void main() {
   test('Deve retornar uma List<MovieEntity> quando o metodo for chamado',

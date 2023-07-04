@@ -1,5 +1,5 @@
 import '../types/types_cast.dart';
 
-abstract class ICastRepository {
+abstract class ICastService {
   ReturnFetchActoresMovies getAllActores(int movieId);
 }

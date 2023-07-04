@@ -1,4 +1,4 @@
-class CastEntity {
+class CastModel {
   final bool adult;
   final int gender;
   final int id;
@@ -11,7 +11,7 @@ class CastEntity {
   final String creditId;
   final int order;
 
-  CastEntity({
+  CastModel({
     this.adult = false,
     this.gender = 0,
     this.id = 0,

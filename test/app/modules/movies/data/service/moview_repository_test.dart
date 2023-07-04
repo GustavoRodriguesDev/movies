@@ -3,21 +3,21 @@ import 'package:mocktail/mocktail.dart';
 import 'package:movies/app/core/error/errors.dart';
 import 'package:movies/app/core/service/http_service/http_service.dart';
 import 'package:movies/app/core/service/http_service/response_http_service.dart';
-import 'package:movies/app/modules/movies/data/service/moview_repository.dart';
-import 'package:movies/app/modules/movies/interactor/dto/pagination_movie_dto.dart';
-import 'package:movies/app/modules/movies/interactor/dto/paran_search_movie_dto.dart';
-import 'package:movies/app/modules/movies/interactor/service/i_movies_repository.dart';
-import 'package:movies/app/modules/movies/interactor/state/movie_state.dart';
+import 'package:movies/app/core/modules/movies/data/service/moview_service.dart';
+import 'package:movies/app/core/modules/movies/interactor/dto/pagination_movie_dto.dart';
+import 'package:movies/app/core/modules/movies/interactor/dto/paran_search_movie_dto.dart';
+import 'package:movies/app/core/modules/movies/interactor/service/i_movies_repository.dart';
+import 'package:movies/app/core/modules/movies/interactor/state/movie_state.dart';
 
 class HttpServiceMock extends Mock implements IHttpService {}
 
 void main() {
   late IHttpService http;
-  late IMoviesRepository repository;
+  late IMoviesService repository;
 
   setUp(() {
     http = HttpServiceMock();
-    repository = MoviesRepository(http);
+    repository = MoviesService(http);
   });
   PaginationMovieDto page = const PaginationMovieDto();
   ParanSearchMovieDto dto =
@@ -25,7 +25,7 @@ void main() {
 
   group('teste metodo getAllMovies', () {
     test(
-        'Deve retornar um ListMovieEntity quando o metodo for chamado getAllMovies for chamado',
+        'Deve retornar um SuccesMovieState quando o metodo for chamado getAllMovies for chamado',
         () async {
       when(() =>
               http.get(any(), queryParameters: any(named: 'queryParameters')))
@@ -45,7 +45,7 @@ void main() {
     });
 
     test(
-        'Deve retornar uma Failure quando o metodo for chamado getAllMovies for chamado',
+        'Deve retornar uma ErrorMovieState quando o metodo for chamado getAllMovies for chamado',
         () async {
       when(() =>
               http.get(any(), queryParameters: any(named: 'queryParameters')))
@@ -64,7 +64,7 @@ void main() {
 
   group('teste metodo searchMovies', () {
     test(
-        'Deve retornar um ListMovieEntity quando o metodo for chamado searchMovies for chamado',
+        'Deve retornar um SuccesMovieState quando o metodo for chamado searchMovies for chamado',
         () async {
       when(() =>
               http.get(any(), queryParameters: any(named: 'queryParameters')))
@@ -81,7 +81,7 @@ void main() {
     });
 
     test(
-        'Deve retornar uma Failure quando o metodo for chamado searchMovies for chamado',
+        'Deve retornar uma ErrorMovieState quando o metodo for chamado searchMovies for chamado',
         () async {
       when(() =>
               http.get(any(), queryParameters: any(named: 'queryParameters')))
@@ -99,7 +99,7 @@ void main() {
   });
   group('teste metodo getSimilarMovies', () {
     test(
-        'Deve retornar um ListMovieEntity quando o metodo for chamado getSimilarMovies for chamado',
+        'Deve retornar um SuccesMovieState quando o metodo for chamado getSimilarMovies for chamado',
         () async {
       when(() => http.get(any())).thenAnswer((_) async => ResponseHttpService(
             data: json,
@@ -112,7 +112,7 @@ void main() {
     });
 
     test(
-        'Deve retornar uma Failure quando o metodo for chamado getSimilarMovies for chamado',
+        'Deve retornar uma ErrorMovieState quando o metodo for chamado getSimilarMovies for chamado',
         () async {
       when(() => http.get(any())).thenAnswer((_) async => ResponseHttpService(
             data: jsonError,

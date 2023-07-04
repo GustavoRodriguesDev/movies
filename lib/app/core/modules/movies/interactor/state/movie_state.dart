@@ -1,4 +1,4 @@
-import '../../../../core/error/errors.dart';
+import '../../../../error/errors.dart';
 import '../model/movie_model.dart';
 
 sealed class MovieState {}

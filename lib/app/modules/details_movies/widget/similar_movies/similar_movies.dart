@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movies/app/modules/movies/interactor/state/movie_state.dart';
+import 'package:movies/app/core/modules/movies/interactor/state/movie_state.dart';
 
 import '../../../../core/widgets/card/movie_card.dart';
 import '../../../../core/widgets/dialgo/details_dialog.dart';
@@ -96,9 +96,10 @@ class _SimilarMoviesWidgetState extends State<SimilarMoviesWidget> {
                             );
                           },
                           child: MovieCard(
-                              pathImage: movie.posterPath,
-                              nameMovie: movie.title,
-                              ratingMovie: movie.voteAverage.toDouble()),
+                            pathImage: movie.posterPath,
+                            nameMovie: movie.title,
+                            ratingMovie: movie.voteAverage.toDouble(),
+                          ),
                         ),
                       );
                     },

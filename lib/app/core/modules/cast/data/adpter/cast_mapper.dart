@@ -2,10 +2,10 @@ import '../../interactor/error/cast_mapper_error.dart';
 import '../../interactor/model/cast_model.dart';
 
 class CastMapper {
-  static List<CastEntity> fromMap(List casts) {
+  static List<CastModel> fromMap(List casts) {
     try {
       return casts
-          .map((cast) => CastEntity(
+          .map((cast) => CastModel(
                 adult: cast['adult'],
                 castId: cast['cast_id'],
                 character: cast['character'],

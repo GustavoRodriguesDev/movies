@@ -1,11 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:movies/app/modules/cast/data/adpter/cast_mapper.dart';
-import 'package:movies/app/modules/cast/interactor/model/cast_model.dart';
+import 'package:movies/app/core/modules/cast/data/adpter/cast_mapper.dart';
+import 'package:movies/app/core/modules/cast/interactor/model/cast_model.dart';
 
 void main() {
   test('Deve retornar uma Lista de CastEntity', () async {
     final response = CastMapper.fromMap(responseMock);
-    expect(response, isA<List<CastEntity>>());
+    expect(response, isA<List<CastModel>>());
   });
 }
 

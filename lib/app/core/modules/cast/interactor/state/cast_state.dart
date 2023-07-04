@@ -5,7 +5,7 @@ import '../model/cast_model.dart';
 sealed class CastState {}
 
 class SuccesCastState extends CastState {
-  final List<CastEntity> listCast;
+  final List<CastModel> listCast;
 
   SuccesCastState({required this.listCast});
 }

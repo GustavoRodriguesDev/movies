@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:movies/app/modules/movies/interactor/state/movie_state.dart';
+import 'package:movies/app/core/modules/movies/interactor/state/movie_state.dart';
 
-import '../../../../movies/interactor/service/i_movies_repository.dart';
+import '../../../../../core/modules/movies/interactor/service/i_movies_repository.dart';
 
 class SimilarMovieStore extends ValueNotifier<MovieState> {
-  final IMoviesRepository moviesRepository;
+  final IMoviesService moviesRepository;
   SimilarMovieStore(
     this.moviesRepository,
   ) : super(EmptyMovieState());

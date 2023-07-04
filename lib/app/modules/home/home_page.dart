@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movies/app/modules/movies/interactor/state/movie_state.dart';
+import 'package:movies/app/core/modules/movies/interactor/state/movie_state.dart';
 
 import '../../core/constants/movies_api.dart';
 import '../../core/widgets/appbar/custom_app_bar.dart';

@@ -3,21 +3,21 @@ import 'package:mocktail/mocktail.dart';
 import 'package:movies/app/core/error/errors.dart';
 import 'package:movies/app/core/service/http_service/http_service.dart';
 import 'package:movies/app/core/service/http_service/response_http_service.dart';
-import 'package:movies/app/modules/cast/data/service/cast_repository.dart';
-import 'package:movies/app/modules/cast/interactor/service/i_cast_repository.dart';
-import 'package:movies/app/modules/cast/interactor/state/cast_state.dart';
+import 'package:movies/app/core/modules/cast/data/service/cast_service.dart';
+import 'package:movies/app/core/modules/cast/interactor/service/i_cast_repository.dart';
+import 'package:movies/app/core/modules/cast/interactor/state/cast_state.dart';
 
 class HttpServiceMock extends Mock implements IHttpService {}
 
 void main() {
   late IHttpService http;
-  late ICastRepository repository;
+  late ICastService repository;
   setUpAll(() {
     http = HttpServiceMock();
-    repository = CastRepository(http);
+    repository = CastService(http);
   });
   test(
-      'Deve retornar um ListCastEntity quando o metodo for chamado getAllActores for chamado',
+      'Deve retornar um SuccesCastState quando o metodo for chamado getAllActores for chamado',
       () async {
     when(() => http.get(any())).thenAnswer((_) async => ResponseHttpService(
           data: responseMock,
@@ -30,7 +30,7 @@ void main() {
   });
 
   test(
-      'Deve retornar uma Failure quando o metodo for chamado getAllActores for chamado',
+      'Deve retornar uma ErrorCastState quando o metodo for chamado getAllActores for chamado',
       () async {
     when(() => http.get(any())).thenThrow(ServiceError(message: ''));
     final response = await repository.getAllActores(1);
