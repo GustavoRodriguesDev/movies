@@ -2,8 +2,8 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:movies/app/modules/details_movies/details_movie_page.dart';
 
-import '../../shared/constants/movies_api.dart';
 import '../../get_it.dart';
+import '../../shared/constants/movies_api.dart';
 import '../details_movies/store/details_movies_store.dart';
 import 'store/search_movie_store.dart';
 import 'store/state/search_state.dart';
@@ -112,7 +112,11 @@ class _SearchMoviePageState extends State<SearchMoviePage> {
                       );
                     }
                     if (value is ErrorSearchState) {
-                      return Text(value.error.message);
+                      return Center(
+                          child: Text(
+                        value.error.message,
+                        style: const TextStyle(color: Colors.white),
+                      ));
                     }
                     if (value is EmptySearchState) {
                       return Center(

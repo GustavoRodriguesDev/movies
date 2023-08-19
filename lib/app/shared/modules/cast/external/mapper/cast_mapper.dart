@@ -18,7 +18,7 @@ class CastMapper {
                 order: cast['order'],
                 originalName: cast['original_name'],
                 popularity: cast['popularity'],
-                profilePath: ApiConstants.image + cast['profile_path'],
+                profilePath: ApiConstants.image + (cast['profile_path']??''),
               ))
           .toList();
     } catch (e, s) {
