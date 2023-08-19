@@ -1,12 +1,12 @@
+import 'package:core/src/error/errors.dart';
+import 'package:core/src/service/http_service/http_service.dart';
+import 'package:core/src/service/http_service/response_http_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:movies/app/core/error/errors.dart';
-import 'package:movies/app/core/service/http_service/http_service.dart';
-import 'package:movies/app/core/service/http_service/response_http_service.dart';
-import 'package:movies/app/core/modules/cast/domain/entity/cast_entity.dart';
-import 'package:movies/app/core/modules/cast/external/datasource/cast_datasource.dart';
-import 'package:movies/app/core/modules/cast/external/error/cast_mapper_error.dart';
-import 'package:movies/app/core/modules/cast/infra/datasource/cast_datasource.dart';
+import 'package:movies/app/shared/modules/cast/domain/entity/cast_entity.dart';
+import 'package:movies/app/shared/modules/cast/external/datasource/cast_datasource.dart';
+import 'package:movies/app/shared/modules/cast/external/error/cast_mapper_error.dart';
+import 'package:movies/app/shared/modules/cast/infra/datasource/cast_datasource.dart';
 
 class HttpServiceMock extends Mock implements IHttpService {}
 

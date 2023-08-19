@@ -1,9 +1,10 @@
+import 'package:core/core.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:movies/app/core/error/errors.dart';
-import 'package:movies/app/core/modules/movies/domain/usecase/fetch_similar_movies_usecase.dart';
-import '../../../core/modules/cast/domain/entity/cast_entity.dart';
-import '../../../core/modules/cast/domain/usecase/fetch_all_actores_movie.dart';
-import '../../../core/modules/movies/domain/entities/movie_entity.dart';
+import 'package:movies/app/shared/modules/movies/domain/usecase/fetch_similar_movies_usecase.dart';
+
+import '../../../shared/modules/cast/domain/entity/cast_entity.dart';
+import '../../../shared/modules/cast/domain/usecase/fetch_all_actores_movie.dart';
+import '../../../shared/modules/movies/domain/entities/movie_entity.dart';
 import 'state/state_details_movies.dart';
 
 class DetaisMoviesStore extends ValueNotifier<DetailsMoviesState> {

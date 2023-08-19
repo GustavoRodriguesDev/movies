@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:movies/app/core/modules/cast/domain/entity/cast_entity.dart';
-import 'package:movies/app/core/modules/cast/external/mapper/cast_mapper.dart';
+import 'package:movies/app/shared/modules/cast/domain/entity/cast_entity.dart';
+import 'package:movies/app/shared/modules/cast/external/mapper/cast_mapper.dart';
 
 void main() {
   test('Deve retornar uma Lista de CastEntity', () async {

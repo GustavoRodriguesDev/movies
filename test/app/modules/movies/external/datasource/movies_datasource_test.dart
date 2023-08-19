@@ -1,14 +1,14 @@
+import 'package:core/src/error/errors.dart';
+import 'package:core/src/service/http_service/http_service.dart';
+import 'package:core/src/service/http_service/response_http_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:movies/app/core/error/errors.dart';
-import 'package:movies/app/core/service/http_service/http_service.dart';
-import 'package:movies/app/core/service/http_service/response_http_service.dart';
-import 'package:movies/app/core/modules/movies/domain/dto/pagination_movie_dto.dart';
-import 'package:movies/app/core/modules/movies/domain/dto/paran_search_movie_dto.dart';
-import 'package:movies/app/core/modules/movies/domain/entities/movie_entity.dart';
-import 'package:movies/app/core/modules/movies/external/datasource/movies_datasource.dart';
-import 'package:movies/app/core/modules/movies/external/error/movie_mapper_error.dart';
-import 'package:movies/app/core/modules/movies/infra/datasource/movies_datasource.dart';
+import 'package:movies/app/shared/modules/movies/domain/dto/pagination_movie_dto.dart';
+import 'package:movies/app/shared/modules/movies/domain/dto/paran_search_movie_dto.dart';
+import 'package:movies/app/shared/modules/movies/domain/entities/movie_entity.dart';
+import 'package:movies/app/shared/modules/movies/external/datasource/movies_datasource.dart';
+import 'package:movies/app/shared/modules/movies/external/error/movie_mapper_error.dart';
+import 'package:movies/app/shared/modules/movies/infra/datasource/movies_datasource.dart';
 
 class HttpServiceMock extends Mock implements IHttpService {}
 

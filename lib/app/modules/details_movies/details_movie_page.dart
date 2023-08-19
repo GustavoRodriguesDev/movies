@@ -2,7 +2,7 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:movies/app/modules/details_movies/store/state/state_details_movies.dart';
 
-import '../../core/constants/movies_api.dart';
+import '../../shared/constants/movies_api.dart';
 import 'store/details_movies_store.dart';
 import 'widget/rating_movie.dart';
 

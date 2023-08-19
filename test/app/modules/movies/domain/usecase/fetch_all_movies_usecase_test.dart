@@ -1,11 +1,10 @@
-import 'package:dartz/dartz.dart';
+import 'package:core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:movies/app/core/error/errors.dart';
-import 'package:movies/app/core/modules/movies/domain/dto/pagination_movie_dto.dart';
-import 'package:movies/app/core/modules/movies/domain/entities/movie_entity.dart';
-import 'package:movies/app/core/modules/movies/domain/repository/movies_repository.dart';
-import 'package:movies/app/core/modules/movies/domain/usecase/fetch_all_movies_usecase.dart';
+import 'package:movies/app/shared/modules/movies/domain/dto/pagination_movie_dto.dart';
+import 'package:movies/app/shared/modules/movies/domain/entities/movie_entity.dart';
+import 'package:movies/app/shared/modules/movies/domain/repository/movies_repository.dart';
+import 'package:movies/app/shared/modules/movies/domain/usecase/fetch_all_movies_usecase.dart';
 
 class MoviesRepositoryMock extends Mock implements IMoviesRepository {}
 
@@ -20,9 +19,10 @@ void main() {
 
   PaginationMovieDto page = const PaginationMovieDto();
 
-
-  test('Deve retornar uma lista de MoviesEntity quando o metodo for chamado', () async {
-    when(() => repository.getAllMovies(page)).thenAnswer((_) async =>const Right([]));
+  test('Deve retornar uma lista de MoviesEntity quando o metodo for chamado',
+      () async {
+    when(() => repository.getAllMovies(page))
+        .thenAnswer((_) async => const Right([]));
 
     final response = await usecase(page);
 
@@ -31,7 +31,8 @@ void main() {
     verify(() => repository.getAllMovies(page)).called(1);
   });
   test('Deve retornar uma Failure quando o metodo for chamado', () async {
-    when(() => repository.getAllMovies(page)).thenAnswer((_) async => Left(Failure(message: '')));
+    when(() => repository.getAllMovies(page))
+        .thenAnswer((_) async => Left(Failure(message: '')));
 
     final response = await usecase(page);
 
