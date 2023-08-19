@@ -1,5 +1,5 @@
 import '../../../../core/error/errors.dart';
-import '../../../movies/domain/entities/movie_entity.dart';
+import '../../../../core/modules/movies/domain/entities/movie_entity.dart';
 
 abstract class HomeState {}
 

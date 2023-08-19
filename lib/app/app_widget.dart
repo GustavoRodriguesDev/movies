@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movies/app/get_it.dart';
+
 import 'modules/home/home_page.dart';
 import 'modules/home/store/home_store.dart';
-import 'modules/home/subpage/details_movies/store/details_movies_store.dart';
 
 class AppWidget extends StatefulWidget {
   const AppWidget({Key? key}) : super(key: key);
@@ -21,8 +21,8 @@ class _AppWidgetState extends State<AppWidget> {
       ),
       title: 'Movies',
       home: HomePage(
-          homeStore: getIt<HomeStore>(),
-          detaisMoviesStore: getIt<DetaisMoviesStore>()),
+        homeStore: getIt<HomeStore>(),
+      ),
     );
   }
 }

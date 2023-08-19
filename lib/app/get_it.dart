@@ -1,22 +1,22 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:movies/app/modules/home/subpage/search_movie/store/search_movie_store.dart';
-import 'package:movies/app/modules/movies/domain/usecase/fetch_similar_movies_usecase.dart';
+import 'package:movies/app/modules/search_movie/store/search_movie_store.dart';
+import 'package:movies/app/core/modules/movies/domain/usecase/fetch_similar_movies_usecase.dart';
 import 'core/constants/movies_api.dart';
 import 'core/service/http_service/http_service.dart';
-import 'modules/cast/domain/repository/cast_repository.dart';
-import 'modules/cast/domain/usecase/fetch_all_actores_movie.dart';
-import 'modules/cast/external/datasource/cast_datasource.dart';
-import 'modules/cast/infra/datasource/cast_datasource.dart';
-import 'modules/cast/infra/repository/cast_repository.dart';
+import 'core/modules/cast/domain/repository/cast_repository.dart';
+import 'core/modules/cast/domain/usecase/fetch_all_actores_movie.dart';
+import 'core/modules/cast/external/datasource/cast_datasource.dart';
+import 'core/modules/cast/infra/datasource/cast_datasource.dart';
+import 'core/modules/cast/infra/repository/cast_repository.dart';
 import 'modules/home/store/home_store.dart';
-import 'modules/home/subpage/details_movies/store/details_movies_store.dart';
-import 'modules/movies/domain/repository/movies_repository.dart';
-import 'modules/movies/domain/usecase/fetch_all_movies_usecase.dart';
-import 'modules/movies/domain/usecase/search_movie.dart';
-import 'modules/movies/external/datasource/movies_datasource.dart';
-import 'modules/movies/infra/datasource/movies_datasource.dart';
-import 'modules/movies/infra/repository/moview_repository.dart';
+import 'modules/details_movies/store/details_movies_store.dart';
+import 'core/modules/movies/domain/repository/movies_repository.dart';
+import 'core/modules/movies/domain/usecase/fetch_all_movies_usecase.dart';
+import 'core/modules/movies/domain/usecase/search_movie.dart';
+import 'core/modules/movies/external/datasource/movies_datasource.dart';
+import 'core/modules/movies/infra/datasource/movies_datasource.dart';
+import 'core/modules/movies/infra/repository/moview_repository.dart';
 
 final getIt = GetIt.instance;
 

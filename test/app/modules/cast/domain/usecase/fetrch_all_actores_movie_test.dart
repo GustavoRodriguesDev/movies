@@ -2,9 +2,9 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:movies/app/core/error/errors.dart';
-import 'package:movies/app/modules/cast/domain/entity/cast_entity.dart';
-import 'package:movies/app/modules/cast/domain/repository/cast_repository.dart';
-import 'package:movies/app/modules/cast/domain/usecase/fetch_all_actores_movie.dart';
+import 'package:movies/app/core/modules/cast/domain/entity/cast_entity.dart';
+import 'package:movies/app/core/modules/cast/domain/repository/cast_repository.dart';
+import 'package:movies/app/core/modules/cast/domain/usecase/fetch_all_actores_movie.dart';
 
 class CastRepositoryMock extends Mock implements ICastRepository {}
 

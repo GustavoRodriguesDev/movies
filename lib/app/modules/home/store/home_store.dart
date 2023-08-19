@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
-import '../../movies/domain/dto/pagination_movie_dto.dart';
-import '../../movies/domain/usecase/fetch_all_movies_usecase.dart';
+import '../../../core/modules/movies/domain/dto/pagination_movie_dto.dart';
+import '../../../core/modules/movies/domain/usecase/fetch_all_movies_usecase.dart';
 import 'state/home_state.dart';
 
 class HomeStore extends ValueNotifier<HomeState> {

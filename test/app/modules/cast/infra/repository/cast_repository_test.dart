@@ -1,10 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:movies/app/core/error/errors.dart';
-import 'package:movies/app/modules/cast/domain/entity/cast_entity.dart';
-import 'package:movies/app/modules/cast/domain/repository/cast_repository.dart';
-import 'package:movies/app/modules/cast/infra/datasource/cast_datasource.dart';
-import 'package:movies/app/modules/cast/infra/repository/cast_repository.dart';
+import 'package:movies/app/core/modules/cast/domain/entity/cast_entity.dart';
+import 'package:movies/app/core/modules/cast/domain/repository/cast_repository.dart';
+import 'package:movies/app/core/modules/cast/infra/datasource/cast_datasource.dart';
+import 'package:movies/app/core/modules/cast/infra/repository/cast_repository.dart';
 
 class CatsDatasourceMock extends Mock implements ICastDatasource {}
 
