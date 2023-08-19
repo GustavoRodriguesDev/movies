@@ -1,6 +1,8 @@
 import 'package:movies/app/core/modules/cast/domain/entity/cast_entity.dart';
 import 'package:movies/app/core/modules/cast/external/error/cast_mapper_error.dart';
 
+import '../../../../constants/movies_api.dart';
+
 class CastMapper {
   static List<CastEntity> fromMap(List casts) {
     try {
@@ -16,7 +18,7 @@ class CastMapper {
                 order: cast['order'],
                 originalName: cast['original_name'],
                 popularity: cast['popularity'],
-                profilePath: cast['profile_path'] ?? '',
+                profilePath: ApiConstants.image + cast['profile_path'],
               ))
           .toList();
     } catch (e, s) {

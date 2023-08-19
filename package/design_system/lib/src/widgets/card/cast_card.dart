@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
-import '../../constants/movies_api.dart';
+
 import '../shimmer/cast_card_shimmer.dart';
 
 class CastCard extends StatefulWidget {
   final String castImage;
   final String castName;
   final void Function()? onTap;
-  const CastCard({Key? key, required this.castImage, required this.castName, required this.onTap}) : super(key: key);
+  const CastCard(
+      {Key? key,
+      required this.castImage,
+      required this.castName,
+      required this.onTap})
+      : super(key: key);
 
   @override
   State<CastCard> createState() => _CastCardState();
@@ -15,7 +20,6 @@ class CastCard extends StatefulWidget {
 class _CastCardState extends State<CastCard> {
   @override
   Widget build(BuildContext context) {
-    // final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: widget.onTap,
@@ -35,7 +39,7 @@ class _CastCardState extends State<CastCard> {
                   : null,
             ),
             child: Image.network(
-              ApiConstants.image + widget.castImage,
+              widget.castImage,
               fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) {
                 return const Center(

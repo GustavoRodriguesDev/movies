@@ -1,11 +1,8 @@
+import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:movies/app/modules/details_movies/details_movie_page.dart';
 
 import '../../core/constants/movies_api.dart';
-import '../../core/widgets/button/icon_button_custon.dart';
-import '../../core/widgets/card/movie_card.dart';
-import '../../core/widgets/navigator/custom_navigator.dart';
-import '../../core/widgets/shimmer/movie_card_shimmer.dart';
 import '../../get_it.dart';
 import '../details_movies/store/details_movies_store.dart';
 import 'store/search_movie_store.dart';
@@ -67,12 +64,16 @@ class _SearchMoviePageState extends State<SearchMoviePage> {
                       controller: search,
                       onEditingComplete: () => store.searchMovie(search.text),
                       decoration: InputDecoration(
-                          focusedBorder: const UnderlineInputBorder(borderSide: BorderSide(color: Colors.transparent)),
+                          focusedBorder: const UnderlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.transparent)),
                           focusColor: Colors.white,
                           fillColor: Colors.white,
                           hintText: 'Encontre seus filmes favoritos',
-                          hintStyle: TextStyle(color: Colors.white.withOpacity(0.5)),
-                          contentPadding: const EdgeInsets.symmetric(horizontal: 10)),
+                          hintStyle:
+                              TextStyle(color: Colors.white.withOpacity(0.5)),
+                          contentPadding:
+                              const EdgeInsets.symmetric(horizontal: 10)),
                       cursorColor: Colors.white,
                     ),
                   ),
@@ -95,7 +96,8 @@ class _SearchMoviePageState extends State<SearchMoviePage> {
                   builder: ((context, value, child) {
                     if (value is LoadingSearchState) {
                       return GridView.builder(
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
                           childAspectRatio: 0.65,
                           crossAxisSpacing: 10,
                           crossAxisCount: 2,
@@ -143,7 +145,8 @@ class _SearchMoviePageState extends State<SearchMoviePage> {
                         height: height * 0.795,
                         width: width,
                         child: GridView.builder(
-                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
                             childAspectRatio: 0.52,
                             crossAxisSpacing: 10,
                             crossAxisCount: 2,
@@ -152,7 +155,11 @@ class _SearchMoviePageState extends State<SearchMoviePage> {
                           itemCount: value.listMovies.length,
                           itemBuilder: (context, index) {
                             final movie = value.listMovies[index];
-                            precacheImage(Image.network(ApiConstants.image + movie.backdropPath).image, context);
+                            precacheImage(
+                                Image.network(
+                                        ApiConstants.image + movie.backdropPath)
+                                    .image,
+                                context);
                             return MovieCard(
                               ratingMovie: movie.voteAverage.toDouble(),
                               nameMovie: movie.title,
@@ -167,7 +174,8 @@ class _SearchMoviePageState extends State<SearchMoviePage> {
                                     rating: movie.voteAverage.toDouble(),
                                     votes: movie.voteCount,
                                     description: movie.overview,
-                                    detaisMoviesStore: getIt<DetaisMoviesStore>(),
+                                    detaisMoviesStore:
+                                        getIt<DetaisMoviesStore>(),
                                     movieId: movie.movieID,
                                   ),
                                 );

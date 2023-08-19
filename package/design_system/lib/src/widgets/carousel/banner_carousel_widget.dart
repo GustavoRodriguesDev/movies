@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:movies/app/core/modules/movies/domain/entities/movie_entity.dart';
-
-import '../../constants/movies_api.dart';
 
 class BannerCarousel extends StatelessWidget {
+  final String image;
+  final String title;
   const BannerCarousel({
     super.key,
-    required this.movie,
+    required this.image,
+    required this.title,
   });
-
-  final MovieEntity movie;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +19,7 @@ class BannerCarousel extends StatelessWidget {
           borderRadius: const BorderRadius.all(Radius.circular(20)),
           image: DecorationImage(
             image: NetworkImage(
-              ApiConstants.image + movie.backdropPath,
+              image,
             ),
             fit: BoxFit.cover,
           ),
@@ -31,7 +29,7 @@ class BannerCarousel extends StatelessWidget {
           color: const Color(0xFF1B2230).withOpacity(0.7),
           child: Center(
             child: Text(
-              movie.title,
+              title,
               style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,

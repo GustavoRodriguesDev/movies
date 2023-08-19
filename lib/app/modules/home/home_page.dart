@@ -1,13 +1,7 @@
+import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/constants/movies_api.dart';
-import '../../core/widgets/appbar/custom_app_bar.dart';
-import '../../core/widgets/card/movie_card.dart';
-import '../../core/widgets/carousel/banner_carousel_widget.dart';
-import '../../core/widgets/carousel/carousel_widget.dart';
-import '../../core/widgets/navigator/custom_navigator.dart';
-import '../../core/widgets/shimmer/carousel_shimmer.dart';
-import '../../core/widgets/shimmer/movie_card_shimmer.dart';
 import '../../get_it.dart';
 import '../details_movies/details_movie_page.dart';
 import '../details_movies/store/details_movies_store.dart';
@@ -72,7 +66,8 @@ class _HomePageState extends State<HomePage> {
                       widgets: listMovies
                           .map(
                             (movie) => BannerCarousel(
-                              movie: movie,
+                              image: movie.backdropPath,
+                              title: movie.title,
                             ),
                           )
                           .toList(),

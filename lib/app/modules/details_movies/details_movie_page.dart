@@ -1,13 +1,8 @@
+import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
-import 'package:movies/app/core/widgets/shimmer/movie_card_shimmer.dart';
-import 'package:movies/app/core/widgets/shimmer/text_shimmer.dart';
 import 'package:movies/app/modules/details_movies/store/state/state_details_movies.dart';
+
 import '../../core/constants/movies_api.dart';
-import '../../core/widgets/card/cast_card.dart';
-import '../../core/widgets/card/movie_card.dart';
-import '../../core/widgets/componentes/image_poster.dart';
-import '../../core/widgets/dialgo/details_dialog.dart';
-import '../../core/widgets/shimmer/cast_card_shimmer.dart';
 import 'store/details_movies_store.dart';
 import 'widget/rating_movie.dart';
 
@@ -202,9 +197,12 @@ class _DetailsMovieState extends State<DetailsMovie> {
                                           context: context,
                                           builder: (context) {
                                             return Container(
-                                              margin: const EdgeInsets.symmetric(horizontal: 20),
+                                              margin:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 20),
                                               alignment: Alignment.center,
-                                              child: ImagePoster(pathImage: cast.profilePath),
+                                              child: ImagePoster(
+                                                  pathImage: cast.profilePath),
                                             );
                                           },
                                         );
@@ -264,7 +262,8 @@ class _DetailsMovieState extends State<DetailsMovie> {
                               return Container(
                                 height: height * 0.30,
                                 width: width * 0.45,
-                                margin: const EdgeInsets.symmetric(horizontal: 4),
+                                margin:
+                                    const EdgeInsets.symmetric(horizontal: 4),
                                 child: GestureDetector(
                                   onTap: () {
                                     showDialog(
@@ -282,7 +281,8 @@ class _DetailsMovieState extends State<DetailsMovie> {
                                   child: MovieCard(
                                       pathImage: movie.posterPath,
                                       nameMovie: movie.title,
-                                      ratingMovie: movie.voteAverage.toDouble()),
+                                      ratingMovie:
+                                          movie.voteAverage.toDouble()),
                                 ),
                               );
                             },
