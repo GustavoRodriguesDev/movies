@@ -6,6 +6,7 @@ import '../../core/widgets/card/movie_card.dart';
 import '../../core/widgets/carousel/banner_carousel_widget.dart';
 import '../../core/widgets/carousel/carousel_widget.dart';
 import '../../core/widgets/navigator/custom_navigator.dart';
+import '../../core/widgets/shimmer/carousel_shimmer.dart';
 import '../../core/widgets/shimmer/movie_card_shimmer.dart';
 import '../../get_it.dart';
 import '../details_movies/details_movie_page.dart';
@@ -53,35 +54,32 @@ class _HomePageState extends State<HomePage> {
             },
           ),
           SliverToBoxAdapter(
-            child: SizedBox(
-              height: 230,
-              child: ValueListenableBuilder<HomeState>(
-                valueListenable: homeStore,
-                builder: (context, value, child) {
-                  switch (value) {
-                    case EmpityHomeState():
-                      return const SizedBox();
+            child: ValueListenableBuilder<HomeState>(
+              valueListenable: homeStore,
+              builder: (context, value, child) {
+                switch (value) {
+                  case EmpityHomeState():
+                    return const SizedBox();
 
-                    case LoadingHomeState():
-                      return const Center(child: CircularProgressIndicator());
+                  case LoadingHomeState():
+                    return const CarouselShimmer();
 
-                    case ErrorHomeState(error: var error):
-                      return Text(error.message);
+                  case ErrorHomeState(error: var error):
+                    return Text(error.message);
 
-                    case SuccesHomeState(listMovies: var listMovies):
-                      return CarouselWidget(
-                        widgets: listMovies
-                            .map(
-                              (movie) => BannerCarousel(
-                                movie: movie,
-                              ),
-                            )
-                            .toList(),
-                      );
-                  }
-                  return const SizedBox();
-                },
-              ),
+                  case SuccesHomeState(listMovies: var listMovies):
+                    return CarouselWidget(
+                      widgets: listMovies
+                          .map(
+                            (movie) => BannerCarousel(
+                              movie: movie,
+                            ),
+                          )
+                          .toList(),
+                    );
+                }
+                return const SizedBox();
+              },
             ),
           ),
           SliverPadding(
