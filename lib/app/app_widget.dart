@@ -1,6 +1,6 @@
+import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:movies/app/get_it.dart';
 
 import 'modules/home/home_page.dart';

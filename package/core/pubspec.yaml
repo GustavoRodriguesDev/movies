@@ -13,6 +13,8 @@ dependencies:
   dio: ^4.0.6
   dartz: ^0.10.1
   get_it: ^7.2.0
+  google_fonts: 5.1.0
+  
 
 dev_dependencies:
   flutter_test:
