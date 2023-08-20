@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-
 class RatingMovie extends StatelessWidget {
   final double rating;
   final int votes;
-  const RatingMovie({Key? key, required this.rating, required this.votes}) : super(key: key);
+  const RatingMovie({Key? key, required this.rating, required this.votes})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,6 @@ class RatingMovie extends StatelessWidget {
         Text(
           '$rating ',
           style: TextStyle(
-            color: Colors.white,
             fontWeight: FontWeight.bold,
             fontSize: width * 0.05,
           ),
@@ -27,7 +26,6 @@ class RatingMovie extends StatelessWidget {
         Text(
           '| $votes',
           style: TextStyle(
-            color: Colors.white.withOpacity(0.6),
             fontSize: width * 0.04,
           ),
         )

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../componentes/image_poster.dart';
 import '../componentes/star_rating.dart';
 
@@ -18,8 +19,6 @@ class MovieCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: onTap,
       child: Column(
@@ -29,19 +28,22 @@ class MovieCard extends StatelessWidget {
             pathImage: pathImage,
           ),
           Padding(
-            padding: EdgeInsets.all(width * 0.015),
+            padding: const EdgeInsets.all(8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SizedBox(
-                  height: height * 0.04,
-                  child: Text(
-                    nameMovie,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: width * 0.04,
+                  child: Tooltip(
+                    message: nameMovie,
+                    child: Text(
+                      nameMovie,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                      ),
                     ),
                   ),
                 ),
@@ -49,7 +51,6 @@ class MovieCard extends StatelessWidget {
                   builder: (context, constraints) {
                     return StarRating(
                       rating: ratingMovie,
-                      
                     );
                   },
                 )

@@ -1,5 +1,6 @@
 library design_system;
 
+export 'src/theme/theme.dart';
 export 'src/widgets/appbar/appbar.dart';
 export 'src/widgets/button/button.dart';
 export 'src/widgets/card/card.dart';

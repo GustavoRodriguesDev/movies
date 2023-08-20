@@ -4,13 +4,12 @@ class IconButtonCuston extends StatefulWidget {
   final double size;
   final IconData iconData;
   final void Function()? onTap;
-  final Color color;
+
   const IconButtonCuston({
     Key? key,
     this.size = 16,
     required this.iconData,
     required this.onTap,
-    this.color = Colors.white,
   }) : super(key: key);
 
   @override
@@ -24,8 +23,7 @@ class _IconButtonCustonState extends State<IconButtonCuston> {
       height: widget.size,
       width: widget.size,
       clipBehavior: Clip.antiAlias,
-      decoration: BoxDecoration(
-        color: widget.color.withOpacity(0.05),
+      decoration: const BoxDecoration(
         shape: BoxShape.circle,
       ),
       child: Material(
@@ -34,7 +32,6 @@ class _IconButtonCustonState extends State<IconButtonCuston> {
           onTap: widget.onTap,
           child: Icon(
             widget.iconData,
-            color: Colors.white,
           ),
         ),
       ),

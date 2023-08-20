@@ -32,11 +32,7 @@ class _CastCardState extends State<CastCard> {
             clipBehavior: Clip.antiAlias,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              border: widget.castImage.isEmpty
-                  ? Border.all(
-                      color: Colors.white,
-                    )
-                  : null,
+              border: widget.castImage.isEmpty ? Border.all() : null,
             ),
             child: Image.network(
               widget.castImage,
@@ -45,7 +41,6 @@ class _CastCardState extends State<CastCard> {
                 return const Center(
                   child: Icon(
                     Icons.broken_image_outlined,
-                    color: Colors.white,
                   ),
                 );
               },
@@ -66,7 +61,6 @@ class _CastCardState extends State<CastCard> {
               // overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: Colors.white.withOpacity(0.6),
                 fontSize: width * 0.04,
               ),
             ),

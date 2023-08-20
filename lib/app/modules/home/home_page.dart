@@ -1,8 +1,8 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 
-import '../../shared/constants/movies_api.dart';
 import '../../get_it.dart';
+import '../../shared/constants/movies_api.dart';
 import '../details_movies/details_movie_page.dart';
 import '../details_movies/store/details_movies_store.dart';
 import '../search_movie/search_movie_page.dart';

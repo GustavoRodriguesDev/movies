@@ -47,7 +47,6 @@ class _SearchMoviePageState extends State<SearchMoviePage> {
               ),
               IconButtonCuston(
                 size: width * .12,
-                color: Colors.transparent,
                 iconData: Icons.arrow_back_ios_new_rounded,
                 onTap: () {
                   Navigator.pop(context);
@@ -57,25 +56,13 @@ class _SearchMoviePageState extends State<SearchMoviePage> {
               Stack(
                 alignment: Alignment.center,
                 children: [
-                  Container(
-                    color: Colors.white.withOpacity(0.1),
-                    child: TextFormField(
-                      style: const TextStyle(color: Colors.white),
-                      controller: search,
-                      onEditingComplete: () => store.searchMovie(search.text),
-                      decoration: InputDecoration(
-                          focusedBorder: const UnderlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.transparent)),
-                          focusColor: Colors.white,
-                          fillColor: Colors.white,
-                          hintText: 'Encontre seus filmes favoritos',
-                          hintStyle:
-                              TextStyle(color: Colors.white.withOpacity(0.5)),
-                          contentPadding:
-                              const EdgeInsets.symmetric(horizontal: 10)),
-                      cursorColor: Colors.white,
-                    ),
+                  TextFormField(
+                    controller: search,
+                    onEditingComplete: () => store.searchMovie(search.text),
+                    decoration: const InputDecoration(
+                        focusedBorder: UnderlineInputBorder(),
+                        hintText: 'Encontre seus filmes favoritos',
+                        contentPadding: EdgeInsets.symmetric(horizontal: 10)),
                   ),
                   Positioned(
                     right: 2,
@@ -115,7 +102,6 @@ class _SearchMoviePageState extends State<SearchMoviePage> {
                       return Center(
                           child: Text(
                         value.error.message,
-                        style: const TextStyle(color: Colors.white),
                       ));
                     }
                     if (value is EmptySearchState) {
@@ -127,14 +113,12 @@ class _SearchMoviePageState extends State<SearchMoviePage> {
                               Icon(
                                 Icons.local_movies_rounded,
                                 size: width * 0.25,
-                                color: Colors.white.withOpacity(0.5),
                               ),
                               SizedBox(height: width * .1),
                               Text(
                                 'Não achamos um filme relacionado com ${search.text}',
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.white.withOpacity(0.5),
+                                style: const TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -197,13 +181,11 @@ class _SearchMoviePageState extends State<SearchMoviePage> {
                             Icon(
                               Icons.local_movies_rounded,
                               size: width * 0.25,
-                              color: Colors.white.withOpacity(0.5),
                             ),
                             SizedBox(height: width * .1),
-                            Text(
+                            const Text(
                               'Experimente buscar pelo seu filme favorito',
                               style: TextStyle(
-                                color: Colors.white.withOpacity(0.5),
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
                               ),

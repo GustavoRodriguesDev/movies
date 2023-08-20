@@ -1,4 +1,6 @@
+import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:movies/app/get_it.dart';
 
 import 'modules/home/home_page.dart';
@@ -17,7 +19,9 @@ class _AppWidgetState extends State<AppWidget> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        scaffoldBackgroundColor: const Color(0xFF1B2230),
+        textTheme: GoogleFonts.robotoTextTheme(Typography.whiteMountainView),
+        colorScheme: ColorsSchemeCustom.colorScheme,
+        useMaterial3: true,
       ),
       title: 'Movies',
       home: HomePage(

@@ -59,7 +59,6 @@ class _DetailsMovieState extends State<DetailsMovie> {
                       return const Center(
                           child: Text(
                         'Image not found',
-                        style: TextStyle(color: Colors.white),
                       ));
                     },
                   ),
@@ -74,9 +73,12 @@ class _DetailsMovieState extends State<DetailsMovie> {
                         begin: Alignment.bottomCenter,
                         end: Alignment.topCenter,
                         colors: [
-                          const Color(0xFF1B2230),
-                          const Color(0xFF1B2230).withOpacity(0.2),
-                          Colors.transparent,
+                          Theme.of(context).colorScheme.background,
+                          Theme.of(context)
+                              .colorScheme
+                              .background
+                              .withOpacity(0.2),
+                          Colors.transparent
                         ],
                         stops: const [0.0, 0.6, 1],
                       ),
@@ -95,7 +97,10 @@ class _DetailsMovieState extends State<DetailsMovie> {
                       width: width * 0.1,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.4),
+                        color: Theme.of(context)
+                            .colorScheme
+                            .surfaceVariant
+                            .withOpacity(0.5),
                         borderRadius: const BorderRadius.all(
                           Radius.circular(10),
                         ),
@@ -103,7 +108,6 @@ class _DetailsMovieState extends State<DetailsMovie> {
                       child: Icon(
                         Icons.close_rounded,
                         size: width * 0.08,
-                        color: Colors.white,
                       ),
                     ),
                   ),
@@ -123,7 +127,6 @@ class _DetailsMovieState extends State<DetailsMovie> {
                   Text(
                     widget.nameMovie,
                     style: TextStyle(
-                      color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: width * 0.06,
                     ),
@@ -132,7 +135,6 @@ class _DetailsMovieState extends State<DetailsMovie> {
                   Text(
                     widget.description,
                     style: TextStyle(
-                      color: Colors.white.withOpacity(0.6),
                       fontSize: width * 0.04,
                     ),
                   ),
@@ -140,7 +142,6 @@ class _DetailsMovieState extends State<DetailsMovie> {
                   Text(
                     'Elenco',
                     style: TextStyle(
-                      color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: width * 0.06,
                     ),
@@ -174,7 +175,6 @@ class _DetailsMovieState extends State<DetailsMovie> {
                           return Text(
                             'Elenco não encontrado',
                             style: TextStyle(
-                              color: Colors.white.withOpacity(0.6),
                               fontSize: width * 0.06,
                             ),
                           );
@@ -186,6 +186,12 @@ class _DetailsMovieState extends State<DetailsMovie> {
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (context, index) {
                               final cast = value.listCast[index];
+                              precacheImage(
+                                Image.network(
+                                  ApiConstants.image + cast.profilePath,
+                                ).image,
+                                context,
+                              );
                               return CastCard(
                                 castImage: cast.profilePath,
                                 castName: cast.originalName,
@@ -193,14 +199,9 @@ class _DetailsMovieState extends State<DetailsMovie> {
                                     ? null
                                     : () {
                                         showDialog(
-                                          barrierColor: Colors.transparent,
                                           context: context,
                                           builder: (context) {
-                                            return Container(
-                                              margin:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 20),
-                                              alignment: Alignment.center,
+                                            return Center(
                                               child: ImagePoster(
                                                   pathImage: cast.profilePath),
                                             );
@@ -218,13 +219,13 @@ class _DetailsMovieState extends State<DetailsMovie> {
                   Text(
                     'Filmes Similares',
                     style: TextStyle(
-                      color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: width * 0.06,
                     ),
                   ),
+                  SizedBox(height: width * 0.04),
                   SizedBox(
-                    height: 350,
+                    height: 360,
                     width: width,
                     child: ValueListenableBuilder(
                       valueListenable: detaisMoviesStore,
@@ -232,7 +233,6 @@ class _DetailsMovieState extends State<DetailsMovie> {
                         if (value is LoadingDetailsMoviesState) {
                           return ListView.builder(
                             itemCount: 5,
-                            shrinkWrap: true,
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (context, index) {
                               return Container(
@@ -247,7 +247,6 @@ class _DetailsMovieState extends State<DetailsMovie> {
                           return Text(
                             'Filmes não econtrados',
                             style: TextStyle(
-                              color: Colors.white.withOpacity(0.6),
                               fontSize: width * 0.06,
                             ),
                           );
@@ -255,7 +254,6 @@ class _DetailsMovieState extends State<DetailsMovie> {
                         if (value is SuccessDetailsMoviesState) {
                           return ListView.builder(
                             itemCount: value.movieEntity.length,
-                            shrinkWrap: true,
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (context, index) {
                               final movie = value.movieEntity[index];
@@ -267,7 +265,6 @@ class _DetailsMovieState extends State<DetailsMovie> {
                                 child: GestureDetector(
                                   onTap: () {
                                     showDialog(
-                                      barrierColor: Colors.transparent,
                                       context: context,
                                       builder: (context) {
                                         return DetailsDialog(

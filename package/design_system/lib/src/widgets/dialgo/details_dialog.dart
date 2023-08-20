@@ -29,16 +29,15 @@ class DetailsDialog extends StatelessWidget {
           right: width * 0.02,
         ),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(width * 0.05),
-            color: const Color(0xFF1B2230),
-            border: Border.all(color: Colors.white)),
+          borderRadius: BorderRadius.circular(width * 0.05),
+          color: Theme.of(context).colorScheme.background,
+        ),
         child: SingleChildScrollView(
           child: Column(
             children: [
               Text(
                 title,
                 style: TextStyle(
-                  color: Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: width * 0.06,
                 ),
@@ -55,7 +54,6 @@ class DetailsDialog extends StatelessWidget {
               Text(
                 descripition,
                 style: TextStyle(
-                  color: Colors.white.withOpacity(0.6),
                   fontSize: width * 0.04,
                 ),
               ),

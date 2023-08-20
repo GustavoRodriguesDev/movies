@@ -15,7 +15,6 @@ class ImagePoster extends StatelessWidget {
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(width * 0.05)),
-          color: Colors.white.withOpacity(0.1),
         ),
         child: Image.network(
           'https://image.tmdb.org/t/p/w500$pathImage',

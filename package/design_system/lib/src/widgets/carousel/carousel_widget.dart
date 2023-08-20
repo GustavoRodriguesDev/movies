@@ -57,7 +57,8 @@ class _CarouselWidgetState extends State<CarouselWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
+        Container(
+          padding: const EdgeInsets.only(top: 12),
           height: 200,
           child: PageView.builder(
             controller: pageController,
@@ -117,7 +118,7 @@ class _CarouselWidgetState extends State<CarouselWidget> {
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(5)),
                               color:
-                                  value == index ? Colors.yellow : Colors.white,
+                                  value == index ? Colors.yellow : Colors.black,
                             ),
                             width: 10,
                             height: 3,

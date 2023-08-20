@@ -21,14 +21,14 @@ class _StarRatingState extends State<StarRating> {
           Row(
             children: List.generate(
               5,
-              (index) => const Icon(
+              (index) => Icon(
                 Icons.star_border_purple500_outlined,
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.inverseSurface,
               ),
             ),
           ),
           ClipPath(
-            clipper: ClipStar(widget.rating / 10),
+            clipper: ClipStar(widget.rating / 15),
             child: Row(
               children: List.generate(
                 5,

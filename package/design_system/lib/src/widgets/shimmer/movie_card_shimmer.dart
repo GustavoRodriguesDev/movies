@@ -29,7 +29,7 @@ class _MovieCardShimmerState extends State<MovieCardShimmer> {
         child: Container(
           height: 300,
           width: 300,
-          color: Colors.white.withOpacity(0.2),
+          color: Colors.grey.withOpacity(0.2),
         ),
       ),
     );

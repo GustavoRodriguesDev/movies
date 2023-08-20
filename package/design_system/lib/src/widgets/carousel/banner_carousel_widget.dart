@@ -25,13 +25,12 @@ class BannerCarousel extends StatelessWidget {
           ),
         ),
         child: Container(
+          color: Theme.of(context).canvasColor.withOpacity(0.3),
           height: 30,
-          color: const Color(0xFF1B2230).withOpacity(0.7),
           child: Center(
             child: Text(
               title,
               style: const TextStyle(
-                color: Colors.white,
                 fontWeight: FontWeight.bold,
                 fontSize: 14,
               ),

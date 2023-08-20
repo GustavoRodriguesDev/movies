@@ -22,7 +22,6 @@ class _CustomAppBarState extends State<CustomAppBar> {
       floating: true,
       snap: true,
       toolbarHeight: 100,
-      backgroundColor: const Color(0xFF1B2230),
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -38,7 +37,6 @@ class _CustomAppBarState extends State<CustomAppBar> {
           ),
           const Text(
             'Gustavo Rodrigues',
-            style: TextStyle(color: Colors.white, fontSize: 20),
           ),
           IconButtonCuston(
             size: width * 0.12,
