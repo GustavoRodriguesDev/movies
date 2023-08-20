@@ -2,9 +2,9 @@
 <div>
     <table>
         <th>
-            <img src="image/home.png" width="300">
-            <img src="image/movie.png" width="300">
-            <img src="image/search.png" width="300">
+            <img src="image/home.png" width="250">
+            <img src="image/movie.png" width="250">
+            <img src="image/search.png" width="250">
         </th>
     </table>
 </div>
