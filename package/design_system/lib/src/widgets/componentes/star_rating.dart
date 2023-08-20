@@ -28,7 +28,7 @@ class _StarRatingState extends State<StarRating> {
             ),
           ),
           ClipPath(
-            clipper: ClipStar(widget.rating / 15),
+            clipper: ClipStar(widget.rating / 13.5),
             child: Row(
               children: List.generate(
                 5,
