@@ -1,9 +1,9 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
-import 'package:movies/app/modules/details_movies/details_movie_page.dart';
 
 import '../../get_it.dart';
 import '../../shared/constants/movies_api.dart';
+import '../details_movies/details_movie_page.dart';
 import '../details_movies/store/details_movies_store.dart';
 import 'store/search_movie_store.dart';
 import 'store/state/search_state.dart';
@@ -31,29 +31,16 @@ class _SearchMoviePageState extends State<SearchMoviePage> {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: Container(
-        height: height,
-        width: width,
-        padding: const EdgeInsets.only(top: 25),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: width * 0.08,
-              ),
-              IconButtonCuston(
-                size: width * .12,
-                iconData: Icons.arrow_back_ios_new_rounded,
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-              const SizedBox(height: 15),
-              Stack(
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            floating: true,
+            snap: true,
+            title: const Text('Buscar Filme'),
+            collapsedHeight: 120,
+            flexibleSpace: FlexibleSpaceBar(
+              title: Stack(
                 alignment: Alignment.center,
                 children: [
                   TextFormField(
@@ -67,8 +54,8 @@ class _SearchMoviePageState extends State<SearchMoviePage> {
                   Positioned(
                     right: 2,
                     child: IconButtonCuston(
-                      size: width * 0.11,
                       iconData: Icons.search,
+                      size: 40,
                       onTap: () {
                         store.searchMovie(search.text);
                       },
@@ -76,130 +63,117 @@ class _SearchMoviePageState extends State<SearchMoviePage> {
                   ),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 14, right: 14, top: 6),
-                child: ValueListenableBuilder<SearchState>(
-                  valueListenable: store,
-                  builder: ((context, value, child) {
-                    if (value is LoadingSearchState) {
-                      return GridView.builder(
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          childAspectRatio: 0.65,
-                          crossAxisSpacing: 10,
-                          crossAxisCount: 2,
+            ),
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.only(left: 14, right: 14, top: 6),
+            sliver: ValueListenableBuilder<SearchState>(
+              valueListenable: store,
+              builder: (context, value, child) {
+                if (value is LoadingSearchState) {
+                  return SliverGrid.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      childAspectRatio: 0.65,
+                      crossAxisSpacing: 10,
+                      crossAxisCount: 2,
+                    ),
+                    itemCount: 6,
+                    itemBuilder: (context, index) {
+                      return const Center(
+                        child: MovieCardShimmer(),
+                      );
+                    },
+                  );
+                }
+                if (value is ErrorSearchState) {
+                  return Center(
+                      child: Text(
+                    value.error.message,
+                  ));
+                }
+                if (value is EmptySearchState) {
+                  return SliverToBoxAdapter(
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 150),
+                        const Icon(
+                          Icons.local_movies_rounded,
+                          size: 120,
                         ),
-                        shrinkWrap: true,
-                        itemCount: 6,
-                        itemBuilder: (context, index) {
-                          return const Center(
-                            child: MovieCardShimmer(),
+                        Text(
+                          'Não achamos um filme relacionado com ${search.text}',
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                }
+                if (value is SuccessSearchState) {
+                  return SliverGrid.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      childAspectRatio: 0.52,
+                      crossAxisSpacing: 10,
+                      crossAxisCount: 2,
+                    ),
+                    itemCount: value.listMovies.length,
+                    itemBuilder: (context, index) {
+                      final movie = value.listMovies[index];
+                      precacheImage(
+                          Image.network(ApiConstants.image + movie.backdropPath)
+                              .image,
+                          context);
+                      return MovieCard(
+                        ratingMovie: movie.voteAverage.toDouble(),
+                        nameMovie: movie.title,
+                        pathImage: movie.posterPath,
+                        onTap: () {
+                          CustomNavigator.pushSlidesTransition(
+                            context,
+                            DetailsMovie(
+                              imagePoster: movie.posterPath,
+                              imageBackgroud: movie.backdropPath,
+                              nameMovie: movie.title,
+                              rating: movie.voteAverage.toDouble(),
+                              votes: movie.voteCount,
+                              description: movie.overview,
+                              detaisMoviesStore: getIt<DetaisMoviesStore>(),
+                              movieId: movie.movieID,
+                            ),
                           );
                         },
                       );
-                    }
-                    if (value is ErrorSearchState) {
-                      return Center(
-                          child: Text(
-                        value.error.message,
-                      ));
-                    }
-                    if (value is EmptySearchState) {
-                      return Center(
-                        child: SizedBox(
-                          child: Column(
-                            children: [
-                              SizedBox(height: width * .2),
-                              Icon(
-                                Icons.local_movies_rounded,
-                                size: width * 0.25,
-                              ),
-                              SizedBox(height: width * .1),
-                              Text(
-                                'Não achamos um filme relacionado com ${search.text}',
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
-                    }
-                    if (value is SuccessSearchState) {
-                      return SizedBox(
-                        height: height * 0.795,
-                        width: width,
-                        child: GridView.builder(
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            childAspectRatio: 0.52,
-                            crossAxisSpacing: 10,
-                            crossAxisCount: 2,
-                          ),
-                          shrinkWrap: true,
-                          itemCount: value.listMovies.length,
-                          itemBuilder: (context, index) {
-                            final movie = value.listMovies[index];
-                            precacheImage(
-                                Image.network(
-                                        ApiConstants.image + movie.backdropPath)
-                                    .image,
-                                context);
-                            return MovieCard(
-                              ratingMovie: movie.voteAverage.toDouble(),
-                              nameMovie: movie.title,
-                              pathImage: movie.posterPath,
-                              onTap: () {
-                                CustomNavigator.pushSlidesTransition(
-                                  context,
-                                  DetailsMovie(
-                                    imagePoster: movie.posterPath,
-                                    imageBackgroud: movie.backdropPath,
-                                    nameMovie: movie.title,
-                                    rating: movie.voteAverage.toDouble(),
-                                    votes: movie.voteCount,
-                                    description: movie.overview,
-                                    detaisMoviesStore:
-                                        getIt<DetaisMoviesStore>(),
-                                    movieId: movie.movieID,
-                                  ),
-                                );
-                              },
-                            );
-                          },
-                        ),
-                      );
-                    }
-                    return Center(
-                      child: SizedBox(
-                        child: Column(
-                          children: [
-                            SizedBox(height: width * .2),
-                            Icon(
-                              Icons.local_movies_rounded,
-                              size: width * 0.25,
-                            ),
-                            SizedBox(height: width * .1),
-                            const Text(
-                              'Experimente buscar pelo seu filme favorito',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
+                    },
+                  );
+                }
+                return const SliverToBoxAdapter(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(height: 150),
+                      Icon(
+                        Icons.local_movies_rounded,
+                        size: 120,
+                      ),
+                      Text(
+                        'Experimente buscar pelo seu filme favorito',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                    );
-                  }),
-                ),
-              ),
-            ],
+                    ],
+                  ),
+                );
+              },
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

@@ -12,7 +12,8 @@ class SearchMovieStore extends ValueNotifier<SearchState> {
 
   Future<void> searchMovie(String movie) async {
     value = LoadingSearchState();
-    final result = await _searchMovieUsecase(ParanSearchMovieDto(searchParan: movie));
+    final result =
+        await _searchMovieUsecase(ParanSearchMovieDto(searchParan: movie));
 
     result.fold(
       (l) => value = ErrorSearchState(l),
